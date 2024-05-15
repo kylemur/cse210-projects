@@ -1,0 +1,8 @@
+Class: Person
+Attributes:
+* _givenName : string
+* _familyName : string
+
+Behaviors:
+* ShowEasternName() : void
+* ShowWesternName() : void
