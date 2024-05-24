@@ -18,7 +18,12 @@ public class Prompt
         _prompts.Add("How did I see the hand of the Lord in my life today?");
         _prompts.Add("What was the strongest emotion I felt today?");
         _prompts.Add("If I had one thing I could do over today, what would it be?");
+        _prompts.Add("Who did I think about most today?");
+        _prompts.Add("What song did I think about today?");
+        _prompts.Add("What scripture best descibes how today went or how I feel right now?");
+        _prompts.Add("What did I do today that was good and/or helpful?");
 
+        // this.ChoosePrompt();
     }
     
     public string ChoosePrompt()

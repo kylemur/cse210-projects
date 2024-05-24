@@ -5,51 +5,45 @@ using System.Formats.Tar;
 
 public class Journal
 {
-    // public Entry _entry = new Entry();
-    // public List<string> _entries = new List<string>();
-    private List<string> _entries;
+    private List<Entry> _entries;
 
     public Journal()
     {
         // Initialize the list
-        _entries = new List<string>();
-
-        // _entries.Add(_entry);
+        _entries = new List<Entry>();
     }
 
-    // public string _entry;
 
-    // public string _response;
-    // _response._response
-
-    // public void AddEntry()
-    // {
-
-    // }
-    public string _fileName = "";
+    public void AddEntry(Entry entry1)
+    {
+        _entries.Add(entry1);
+    }
 
     public void Display()
     {
-        foreach (string e in _entries)
-        // foreach (string r in _response)
+        foreach (Entry e in _entries)
         {
-            Console.WriteLine(e);
+            e.Display();
         }
     }
 
-    public void Save()
-    {
-       
-        TextWriter tr = new StreamWriter($@"../../../savedEntries/{_fileName}");
-        tr.WriteLine($@"../../../savedEntries/{_fileName}");
-        
-    }
-
+    string filePath = @"C:\Users\arien\OneDrive\Kyle BYUI\CSE 210\cse210-projects\prove\Develop02\savedEntries.txt";
     public void Load()
     {
-        TextReader tr = new StreamReader($@"../../../savedEntries/{_fileName}");
-        // tr.ReadLine($@"../../../savedEntries/{_fileName}");
-        
+        // Read the content from the input file
+        string content;
+        using (StreamReader reader = new StreamReader(filePath))
+        {
+            content = reader.ReadToEnd();
+        }
+        Console.WriteLine(content);
     }
-
+    public void Save()
+    {
+        using (StreamWriter writer = new StreamWriter(filePath, true))
+        {
+            foreach (Entry e in _entries)
+            writer.WriteLine($"{e._date} - {e._prompt} \n{e._response}" + "|");
+        }
+    }
 }
