@@ -8,11 +8,11 @@ class Program
 
         Journal journal1 = new Journal();
 
-        Console.WriteLine("Welcome to the Journal Program!");
+        Console.WriteLine("\nWelcome to the Journal Program!");
 
         while (choice != "5")
         {
-            Console.WriteLine("Please select one of the following choices: ");
+            Console.WriteLine("\nPlease select one of the following choices: ");
 
             Console.WriteLine("1. Write");
             Console.WriteLine("2. Display");
@@ -22,6 +22,7 @@ class Program
 
             Console.Write("What would you like to do? ");
             choice = Console.ReadLine();
+            Console.WriteLine();
 
             if (choice == "1")
             {
@@ -52,7 +53,9 @@ class Program
 
             else if (choice == "5")
             {
-                Console.WriteLine("Goodbye.");
+                Console.Write("Approximately what time will I write in my journal tomorrow? ");
+                string journalTime = Console.ReadLine();
+                Console.WriteLine($"Remember to set an alarm for {journalTime}. Goodbye.\n");
             }
 
             else
