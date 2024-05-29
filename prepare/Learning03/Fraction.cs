@@ -20,9 +20,10 @@ public class Fraction
     }
 
             // This part is unnecessary. 
-    // public void GetTop()
+    // public void ~INT~ GetTop()
     // {
     //     Console.WriteLine(_top);
+    //     ~RETURN _TOP~
     // }
     // public void SetTop(int top)
     // {
