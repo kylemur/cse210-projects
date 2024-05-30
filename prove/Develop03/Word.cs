@@ -1,25 +1,16 @@
 class Word
 {
-    private List<string> _wordsList;
     private string _word;
 
     public Word(string word)
     {
-        // set word to hidden or shown
-            // for length of _wordsList, randomly choose 3 indexes in that list to hide
-            // each new instance, hide 3 more (keep old hidden words still hidden)
         _word = word;
         Show();
     }
 
-    private void SetWordsList()
-    {
-        Scripture scriptureWords = new Scripture();
-        _wordsList = scriptureWords.GetWords();
-    }
     public bool Hide()
     {
-        return true;
+        return false;
     }
     public bool Show()
     {
@@ -29,10 +20,11 @@ class Word
     {
         
         
-        if (_randomWord = hide)
+        if (Hide())
         {
-            _lengthOfWord
-            _wordHidden = "_" * _lengthOfWord;
+            int _length = _word.Length;
+            string _wordHidden = new string('_', _length);
+
             return _wordHidden;
         }
         else

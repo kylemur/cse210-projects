@@ -38,11 +38,11 @@ class Reference
 
         if (_multipleVerses)
         {
-            reference = $"{_book} {_chapter}:{_verseFirst}-{_verseLast}";
+            reference = $"\n{_book} {_chapter}:{_verseFirst}-{_verseLast}";
         }
         else
         {
-            reference = $"{_book} {_chapter}:{_verseFirst}";
+            reference = $"\n{_book} {_chapter}:{_verseFirst}";
         }
         return reference;
     }
