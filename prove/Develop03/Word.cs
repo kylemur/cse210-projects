@@ -18,14 +18,13 @@ class Word
     }
     public string Render()
     {
-        
-        
         if (Hide())
         {
             int _length = _word.Length;
             string _wordHidden = new string('_', _length);
+            // if character == alphabet then don't change, else _
 
-            return _wordHidden;
+            return $"{_wordHidden} ";
         }
         else
         {

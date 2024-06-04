@@ -7,7 +7,8 @@ class Scripture
 
     public Scripture()
     {
-        _reference = "Enos 1:1-2";
+        Reference reference1 = new Reference();
+        _reference = reference1.GetReference();
         _words = "Behold, it came to pass that I, Enos, knowing my father that he was a just man— for he taught me in his language, and also in the nurture and admonition of the Lord— and blessed be the name of my God for it— And I will tell you of the wrestle which I had before God, before I received a remission of my sins.";
 
         Console.Write($"{_reference} ");
@@ -21,6 +22,8 @@ class Scripture
         // Create a new Random instance
         Random random = new Random();
         
+        /// make a list 0 through list length, take out 3 from that list, Hide() UNLESS index in this list
+
         // Pick random indexes
         while (randomIndexes.Count < 3)
         {
@@ -28,8 +31,11 @@ class Scripture
             if (!randomIndexes.Contains(randomIndex))
             {
                 randomIndexes.Add(randomIndex);
+                // Console.WriteLine(randomIndex);
             }
         }
+        // Console.WriteLine(randomIndexes.Count);
+        // Console.WriteLine(_wordsList.Count);
         
         foreach (string w in _wordsList)
         {
@@ -39,6 +45,7 @@ class Scripture
             {
                 w1.Hide();
             }
+            // Console.WriteLine(index);
             _classList.Add(w1);
             
         }
