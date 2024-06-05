@@ -4,13 +4,31 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Console.WriteLine("Hello Develop03 World!");
+        // Console.Write("Do you want to end? ");
+        // string answer = Console.ReadLine();
+        string answer = "no";
 
-
+        // while (answer != "yes")
+        // {
+        //     for 1 = 1 to 3:
+        //         Console.Write("Do you want to end? ");
+        //         answer = Console.ReadLine();
+        //         Scripture scriptureTest = new Scripture();
+        // }
+        
 
         Scripture scriptureTest = new Scripture();
 
+        while (answer != "yes")
+        {
+            Console.Write("Do you want to end? ");
+            answer = Console.ReadLine();
 
+            scriptureTest.HideOneWord();
+            scriptureTest.HideOneWord();
+            scriptureTest.HideOneWord();
+            scriptureTest.Show();
+        }
 
         // Reference reference1 = new Reference("1 Nephi", 3, 7);
 

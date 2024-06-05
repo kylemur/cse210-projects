@@ -1,6 +1,7 @@
 class Word
 {
     private string _word;
+    private bool _ishidden;
 
     public Word(string word)
     {
@@ -8,17 +9,17 @@ class Word
         Show();
     }
 
-    public bool Hide()
+    public void Hide()
     {
-        return false;
+        _ishidden = true;
     }
-    public bool Show()
+    public void Show()
     {
-        return true;
+        _ishidden = false;
     }
     public string Render()
     {
-        if (Hide())
+        if (_ishidden)
         {
             int _length = _word.Length;
             string _wordHidden = new string('_', _length);
