@@ -1,3 +1,8 @@
+// This program has default reference and scripture but can accept arguments to set the reference and scripture.
+// The program only hides words that have not previously been hidden. 
+// I made an undo method that allows the user to go back a step to see the words that had just barely been hidden.
+
+
 using System;
 
 class Program
