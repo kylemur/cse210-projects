@@ -8,14 +8,14 @@ class Reference
     private int _verseLast;
     private bool _multipleVerses;
 
-    public Reference()
-    {
-        _book = "Enos";
-        _chapter = 1;
-        _verseFirst = 1;
-        _verseLast = 2;
-        _multipleVerses = true;
-    }
+    // public Reference()
+    // {
+    //     _book = "Enos";
+    //     _chapter = 1;
+    //     _verseFirst = 1;
+    //     _verseLast = 2;
+    //     _multipleVerses = true;
+    // }
     public Reference(string book, int chapter, int verseFirst)
     {
         _book = book;

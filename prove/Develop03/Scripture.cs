@@ -13,42 +13,42 @@ class Scripture
 
 
 
-    public Scripture()
-    {
-        Reference reference1 = new Reference();
-        _reference = reference1.GetReference();
-        _words = "Behold, it came to pass that I, Enos, knowing my father that he was a just man— for he taught me in his language, and also in the nurture and admonition of the Lord— and blessed be the name of my God for it— And I will tell you of the wrestle which I had before God, before I received a remission of my sins.";
+    // public Scripture()
+    // {
+    //     Reference reference1 = new Reference();
+    //     _reference = reference1.GetReference();
+    //     _words = "Behold, it came to pass that I, Enos, knowing my father that he was a just man— for he taught me in his language, and also in the nurture and admonition of the Lord— and blessed be the name of my God for it— And I will tell you of the wrestle which I had before God, before I received a remission of my sins.";
 
-        string[] _wordsArray = _words.Split(' ');
-        _wordsList = _wordsArray.ToList();
+    //     string[] _wordsArray = _words.Split(' ');
+    //     _wordsList = _wordsArray.ToList();
 
-        // Pick random indexes
-        while (randomIndexes.Count < _wordsList.Count)
-        {
-            int randomIndex = random.Next(_wordsList.Count);
-            if (!randomIndexes.Contains(randomIndex))
-            {
-                randomIndexes.Add(randomIndex);
-            }
-        }
+    //     // Pick random indexes
+    //     while (randomIndexes.Count < _wordsList.Count)
+    //     {
+    //         int randomIndex = random.Next(_wordsList.Count);
+    //         if (!randomIndexes.Contains(randomIndex))
+    //         {
+    //             randomIndexes.Add(randomIndex);
+    //         }
+    //     }
 
-        // put each i from randomIndexes into _shownIndexes
-        foreach (int rndint in randomIndexes)
-        {
-            _shownIndexes.Push(rndint);
-        }
+    //     // put each i from randomIndexes into _shownIndexes
+    //     foreach (int rndint in randomIndexes)
+    //     {
+    //         _shownIndexes.Push(rndint);
+    //     }
 
-        foreach (string wrd in _wordsList)
-        {
-            Word wrd1 = new Word(wrd);
-            int index = _wordsList.IndexOf(wrd);
-            if (_hiddenIndexes.Contains(index))
-            {
-                wrd1.Hide();
-            }
-            _classList.Add(wrd1);
-        }
-    }
+    //     foreach (string wrd in _wordsList)
+    //     {
+    //         Word wrd1 = new Word(wrd);
+    //         int index = _wordsList.IndexOf(wrd);
+    //         if (_hiddenIndexes.Contains(index))
+    //         {
+    //             wrd1.Hide();
+    //         }
+    //         _classList.Add(wrd1);
+    //     }
+    // }
 
 
 
