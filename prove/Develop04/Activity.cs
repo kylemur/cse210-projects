@@ -4,16 +4,14 @@ public class Activity
     private string _description;
     private int _duration;
     protected int _cycles = 0;
-    private List<string> _spinner = new List<string>();
+    private List<string> _spinner = new List<string>
+    {
+        "|", "/", "-", "\\"
+    };
 
     public Activity()
     {
         
-
-        _spinner.Add("|");
-        _spinner.Add("/");
-        _spinner.Add("-");
-        _spinner.Add("\\");
     }
 
     protected void ShowStartMessage()
@@ -21,17 +19,13 @@ public class Activity
         Console.WriteLine($"Welcome to the {_name}. \n");
         Console.WriteLine(_description);
         SpinnerPause(10);
-
-        // Console.Clear();
-        // Console.WriteLine("Get ready... ");
-        // SpinnerPause();
     }
     public void ShowEndMessage()
     {
         Console.WriteLine("Well done!!! ");
         SpinnerPause();
         Console.WriteLine($"You have completed another {_duration} seconds of the {_name}. ");
-        SpinnerPause(10);
+        SpinnerPause(5);
     }
     protected void SetActivityName(string name)
     {
