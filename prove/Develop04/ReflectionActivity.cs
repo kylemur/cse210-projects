@@ -26,9 +26,14 @@ public class ReflectionActivity : Activity
         SetDescription("This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.");
 
         ShowStartMessage();
+
         Console.Write("\nHow long (in seconds) would you like for your session? ");
         int _activityDuration = int.Parse(Console.ReadLine());
         SetDuration(_activityDuration);
+
+        Console.WriteLine("Get ready... ");
+        SpinnerPause();
+        Console.Clear();
     }
 
     public void ShowPrompt()

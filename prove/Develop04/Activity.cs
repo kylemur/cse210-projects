@@ -22,9 +22,9 @@ public class Activity
         Console.WriteLine(_description);
         SpinnerPause(10);
 
-        Console.Clear();
-        Console.WriteLine("Get ready... ");
-        SpinnerPause();
+        // Console.Clear();
+        // Console.WriteLine("Get ready... ");
+        // SpinnerPause();
     }
     public void ShowEndMessage()
     {

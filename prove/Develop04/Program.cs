@@ -21,7 +21,6 @@ class Program
             if (choice == 1)
             {
                 BreathingActivity breathingActivity1 = new BreathingActivity();
-                breathingActivity1.SpinnerPause();
 
                 DateTime startTime = DateTime.Now;
                 DateTime endTime = startTime.AddSeconds(breathingActivity1.GetDuration());
@@ -38,10 +37,16 @@ class Program
             else if (choice == 2)
             {
                 ReflectionActivity reflectionActivity1 = new();
-                reflectionActivity1.SpinnerPause();
                 reflectionActivity1.ShowPrompt();
+                reflectionActivity1.SpinnerPause(10);
 
-                reflectionActivity1.ShowQuestion();
+                DateTime startTime = DateTime.Now;
+                DateTime endTime = startTime.AddSeconds(reflectionActivity1.GetDuration());
+                while (DateTime.Now < endTime)
+                {
+                    reflectionActivity1.ShowQuestion();
+                    reflectionActivity1.SpinnerPause(10);
+                }
 
                 reflectionActivity1.ShowEndMessage();
                 Console.Clear();
@@ -50,13 +55,17 @@ class Program
             else if (choice == 3)
             {
                 ListingActivity listingActivity1 = new();
-                listingActivity1.SpinnerPause();
-                listingActivity1.ShowPrompt();
 
-                // response.Add(_responses);
+                listingActivity1.ShowPrompt();
+                DateTime startTime = DateTime.Now;
+                DateTime endTime = startTime.AddSeconds(listingActivity1.GetDuration());
+                while (DateTime.Now < endTime)
+                {
+                    listingActivity1.AddResponse();
+                }
 
                 int numberResponses = listingActivity1.CountResponses();
-                Console.WriteLine($"You wrote {numberResponses} items. ");
+                Console.WriteLine($"\nYou wrote {numberResponses} items. ");
 
                 listingActivity1.ShowEndMessage();
                 Console.Clear();
