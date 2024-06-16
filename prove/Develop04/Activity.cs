@@ -18,7 +18,6 @@ public class Activity
     {
         Console.WriteLine($"Welcome to the {_name}. \n");
         Console.WriteLine(_description);
-        SpinnerPause(10);
     }
     public void ShowEndMessage()
     {
@@ -70,7 +69,7 @@ public class Activity
         while (DateTime.Now <= endTime)
         {
             i = CycleThroughList(_spinner, _cycles);
-            Thread.Sleep(250);
+            Thread.Sleep(200);
 
             Console.Write("\b \b"); // Erase the old spinner character
             if (DateTime.Now < endTime)

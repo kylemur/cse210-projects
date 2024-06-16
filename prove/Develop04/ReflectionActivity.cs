@@ -39,11 +39,11 @@ public class ReflectionActivity : Activity
     public void ShowPrompt()
     {
         int i = CycleThroughList(_prompts, _cycles);
-        Console.WriteLine(_prompts[i]);
+        Console.WriteLine($"---{_prompts[i]}---");
     }
     public void ShowQuestion()
     {
         int i = CycleThroughList(_reflectQuestions, _cycles);
-        Console.WriteLine(_reflectQuestions[i]);
+        Console.WriteLine($"> {_reflectQuestions[i]}");
     }
 }

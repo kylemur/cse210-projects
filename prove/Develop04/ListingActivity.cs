@@ -29,11 +29,11 @@ public class ListingActivity : Activity
     public void ShowPrompt()
     {
         int i = CycleThroughList(_prompts, _cycles);
-        Console.WriteLine(_prompts[i]);
+        Console.WriteLine($"---{_prompts[i]}---");
     }
     public void AddResponse()
     {
-        Console.Write("Item: "); 
+        Console.Write("> "); 
         _responses.Add(Console.ReadLine());
     }
     public int CountResponses()

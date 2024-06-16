@@ -1,3 +1,5 @@
+// I made sure no prompts/questions are selected until they have all been used at least once in that session.
+
 using System;
 
 class Program
@@ -7,6 +9,8 @@ class Program
         int choice = 0;
         while (choice != 4)
         {
+            Console.Clear();
+
             Console.WriteLine("Menu Options: ");
             Console.WriteLine("  1. Start breathing activity ");
             Console.WriteLine("  2. Start reflecting activity ");
@@ -31,14 +35,20 @@ class Program
                 }
 
                 breathingActivity1.ShowEndMessage();
-                Console.Clear();
             }
 
             else if (choice == 2)
             {
                 ReflectionActivity reflectionActivity1 = new();
+                Console.WriteLine("Consider the following prompt: \n");
                 reflectionActivity1.ShowPrompt();
-                reflectionActivity1.SpinnerPause(10);
+                
+                Console.Write("\nWhen you have something in mind, press enter to continue. ");
+                string cont = Console.ReadLine();
+
+                Console.WriteLine("\nNow ponder on each of the following questions as they related to this experience. ");
+                Console.Write("You may begin in: ");
+                reflectionActivity1.TimerPause();
 
                 DateTime startTime = DateTime.Now;
                 DateTime endTime = startTime.AddSeconds(reflectionActivity1.GetDuration());
@@ -49,7 +59,6 @@ class Program
                 }
 
                 reflectionActivity1.ShowEndMessage();
-                Console.Clear();
             }
 
             else if (choice == 3)
@@ -68,7 +77,6 @@ class Program
                 Console.WriteLine($"\nYou wrote {numberResponses} items. ");
 
                 listingActivity1.ShowEndMessage();
-                Console.Clear();
             }
 
             else if (choice == 4)
