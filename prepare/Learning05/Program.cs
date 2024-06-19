@@ -15,22 +15,26 @@ class Program
         Console.WriteLine(rectangle1.GetArea());
 
         Circle circle1 = new("orange", 10);
-        Console.WriteLine(circle1.GetColor());
-        Console.WriteLine(circle1.GetArea());
+        Console.WriteLine(circle1.GetColor() + " " + circle1.GetArea());
+        // Console.WriteLine(circle1.GetArea());
 
 
         Console.WriteLine();
 
 
         List<Shape> shapes = new();
+        shapes.Add(square1);
+        shapes.Add(rectangle1);
+        shapes.Add(circle1);
         shapes.Add(new Square("forrest green", 6));
         shapes.Add(new Rectangle("sky blue", 2, 7));
         shapes.Add(new Circle("yellow", 9));
 
         foreach(Shape s in shapes)
         {
-            Console.WriteLine(s.GetColor());
-            Console.WriteLine(s.GetArea());
+            string color = s.GetColor();
+            double area = s.GetArea();
+            Console.WriteLine($"The {color} shape has an area of {area}.");
         }
     }
 }
