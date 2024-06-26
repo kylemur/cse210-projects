@@ -1,13 +1,17 @@
 public class EternalGoal : Goal
 {
-    public EternalGoal(string name, string description, int points, bool completed) : base(name, description, points, completed)
+    public EternalGoal(string name, string description) : base(name, description)
     {
-        //nothing needed here
+        SetCompleted();
     }
 
     public override void SetCompleted()
     {
-        
+        _completed = false;
     }
     
+    public override void AddPoints()
+    {
+        _eternalPoints += GetPointValue();
+    }
 }

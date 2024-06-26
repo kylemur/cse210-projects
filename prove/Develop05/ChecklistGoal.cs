@@ -4,7 +4,7 @@ public class ChecklistGoal : Goal
     private int _timesCompleted;
     private int _bonusPoints;
 
-    public ChecklistGoal(string name, string description, int points, bool completed, int timesNeeded, int timesCompleted, int bonusPoints) : base(name, description, points, completed)
+    public ChecklistGoal(string name, string description, int timesNeeded, int timesCompleted, int bonusPoints) : base(name, description)
     {
         _timesNeeded = timesNeeded;
         _timesCompleted = timesCompleted;
@@ -24,16 +24,21 @@ public class ChecklistGoal : Goal
     {
         
     }
+    
     public override void AddPoints()
     {
-        //base.AddPoints();
+        _checklistPoints += GetPointValue();
+        if (_timesCompleted == _timesNeeded)
+        {
+            _checklistPoints += _bonusPoints;
+        }
     }
 
-    public override void SaveAttributes()
+    public override void Save()
     {
-        //base.SaveAttributes();
+        // _classAttributes = $"{_totalPoints}~{_simplePoints}~{_eternalPoints}~{_checklistPoints}~\n{_name}~{_description}~{_completed}~{_pointValue}~{_bonusPoints}~{_timesCompleted}~{_timesNeeded}";
     }
-    public override void LoadAttributes()
+    public override void Load()
     {
         //base.LoadAttributes();
     }
