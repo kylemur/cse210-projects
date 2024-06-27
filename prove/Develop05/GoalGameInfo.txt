@@ -1,0 +1,4 @@
+totalPoints~simplePoints~eternalPoints~checklistPoints
+goalType:name~description~pointValue~isCompleted
+goalType:name~description~pointValue~isCompleted
+goalType:name~description~pointValue~isCompleted~bonusPoints~timesCompleted~timesNeeded

@@ -1,6 +1,6 @@
 public class EternalGoal : Goal
 {
-    public EternalGoal(string name, string description) : base(name, description)
+    public EternalGoal() : base()
     {
         SetCompleted();
     }
@@ -12,6 +12,7 @@ public class EternalGoal : Goal
     
     public override void AddPoints()
     {
-        _eternalPoints += GetPointValue();
+        Game game1 = new Game();
+        game1.SetEternalPoints(GetPointValue());
     }
 }
