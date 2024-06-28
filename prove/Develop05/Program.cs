@@ -7,6 +7,7 @@ class Program
         string option = "";
         while(option != "6")
         {
+            Game game1 = new();
             Console.WriteLine("\nYou have {points} points.\n");
 
             Console.WriteLine("Menu Options:");
@@ -31,14 +32,17 @@ class Program
                 if(goalType == "1")
                 {
                     SimpleGoal simpleGoal1 = new SimpleGoal();
+                    game1.AddGoal(simpleGoal1);
                 }
                 else if(goalType == "2")
                 {
                     EternalGoal eternalGoal1 = new EternalGoal();
+                    game1.AddGoal(eternalGoal1);
                 }
                 else if(goalType == "3")
                 {
                     ChecklistGoal checklistGoal1 = new ChecklistGoal();
+                    game1.AddGoal(checklistGoal1);
                 }
                 else
                 {

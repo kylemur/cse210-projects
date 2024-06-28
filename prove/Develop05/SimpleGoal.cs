@@ -2,7 +2,7 @@ public class SimpleGoal : Goal
 {
     public SimpleGoal() : base()
     {
-        //nothing needed here
+        SetGoalType("SimpleGoal");
     }
 
 

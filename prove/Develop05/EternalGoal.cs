@@ -2,12 +2,13 @@ public class EternalGoal : Goal
 {
     public EternalGoal() : base()
     {
-        SetCompleted();
+        SetGoalType("EternalGoal");
+        SetCompleted(false);
     }
 
-    public override void SetCompleted()
+    public override void SetCompleted(bool isCompleted)
     {
-        _completed = false;
+        _isCompleted = false;
     }
     
     public override void AddPoints()
