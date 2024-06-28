@@ -1,10 +1,14 @@
-public abstract class Goal
+public class Goal // was    public abstract class Goal     but I had issues using ChecklistGoal methods so I put them in base class
 {
     protected string _goalType;
     protected string _name;
     protected string _description;
     protected int _pointValue;
     protected bool _isCompleted;
+
+    protected int _timesNeeded;
+    protected int _timesCompleted;
+    protected int _bonusPoints;
 
 
     public Goal()
@@ -32,7 +36,7 @@ public abstract class Goal
         _pointValue = int.Parse(Console.ReadLine());
     }
 
-    
+
     public void SetGoalType(string goalType)
     {
         _goalType = goalType;
@@ -52,6 +56,10 @@ public abstract class Goal
     public virtual void SetCompleted(bool isCompleted)
     {
         _isCompleted = isCompleted;
+    }
+    public void SetTimesCompleted(int timesCompleted)
+    {
+        _timesCompleted += timesCompleted;
     }
 
 
@@ -74,6 +82,19 @@ public abstract class Goal
     public bool GetCompleted()
     {
         return _isCompleted;
+    }
+
+    public int GetBonusPoints()
+    {
+        return _bonusPoints;
+    }
+    public int GetTimesNeeded()
+    {
+        return _timesNeeded;
+    }
+    public int GetTimesCompleted()
+    {
+        return _timesCompleted;
     }
 
 
@@ -113,7 +134,7 @@ public abstract class Goal
     }
 
 
-    public abstract void AddPoints();
+    // public abstract void AddPoints();
 
 
     // public virtual void SaveAttributes()

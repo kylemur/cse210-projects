@@ -53,6 +53,58 @@ public class Game
         return _checklistPoints;
     }
 
+
+    public void RecordEvent()
+    {
+        Console.WriteLine("The goals are: ");
+
+        int order = 0;
+        foreach (Goal g in _goalsList)
+        {
+            order += 1;
+            Console.WriteLine($"{order}. {g.GetName()}");
+        }
+
+        Console.Write("Which goal did you accomplish? ");
+        int goalAccomplished = int.Parse(Console.ReadLine());
+        int i = goalAccomplished - 1;
+
+        int pointsEarned = 0;
+        if (_goalsList[i].GetGoalType() == "SimpleGoal")
+        {
+            _goalsList[i].SetCompleted(true);
+            pointsEarned = _goalsList[i].GetPointValue();
+            SetSimplePoints(pointsEarned);
+            SetTotalPoints();
+        }
+        else if (_goalsList[i].GetGoalType() == "EternalGoal")
+        {
+            pointsEarned = _goalsList[i].GetPointValue();
+            SetEternalPoints(pointsEarned);
+            SetTotalPoints();
+        }
+        else if (_goalsList[i].GetGoalType() == "ChecklistGoal")
+        {
+            _goalsList[i].SetTimesCompleted(1);
+            if (_goalsList[i].GetTimesCompleted() == _goalsList[i].GetTimesNeeded())
+            {
+                _goalsList[i].SetCompleted(true);
+                pointsEarned = _goalsList[i].GetPointValue() + _goalsList[i].GetBonusPoints();
+                SetChecklistPoints(pointsEarned);
+                SetTotalPoints();
+            }
+            else
+            {
+                pointsEarned = _goalsList[i].GetPointValue();
+                SetChecklistPoints(pointsEarned);
+                SetTotalPoints();
+            }
+        }
+        Console.WriteLine($"Congradulations! You have earned {pointsEarned} points! ");
+        Console.WriteLine($"You now have {_totalPoints} points. ");
+    }
+
+
     public void DisplayPointsDetails()
     {
         Console.WriteLine($"  {_simplePoints} SimpleGoal points");
@@ -98,6 +150,7 @@ public class Game
                 outputFile.WriteLine(goal.Serialize());
             }
         }
+        Load(userName);
     }
     
 
@@ -111,6 +164,16 @@ public class Game
         {
             try
             {
+                _pointsAttributes = "0~0~0~0";
+                _totalPoints = 0;
+                _simplePoints = 0;
+                _eternalPoints = 0;
+                _checklistPoints = 0;
+
+                _goalsList.Clear();
+
+
+
                 string[] lines = File.ReadAllLines(filename);
                 // Process the lines as needed
             

@@ -1,8 +1,8 @@
 public class ChecklistGoal : Goal
 {
-    private int _timesNeeded;
-    private int _timesCompleted;
-    private int _bonusPoints;
+    // private int _timesNeeded;
+    // private int _timesCompleted;
+    // private int _bonusPoints;
 
 
     public ChecklistGoal() : base()
@@ -40,28 +40,28 @@ public class ChecklistGoal : Goal
     {
         _timesNeeded = timesNeeded;
     }
-    public void SetTimesCompleted(int timesCompleted)
-    {
-        _timesCompleted = timesCompleted;
-    }
+    // public void SetTimesCompleted(int timesCompleted)
+    // {
+    //     _timesCompleted += timesCompleted;
+    // }
     public void SetBonusPoints(int bonusPoints)
     {
         _bonusPoints = bonusPoints;
     }
 
 
-    public int GetBonusPoints()
-    {
-        return _bonusPoints;
-    }
-    public int GetTimesNeeded()
-    {
-        return _timesNeeded;
-    }
-    public int GetTimesCompleted()
-    {
-        return _timesCompleted;
-    }
+    // public int GetBonusPoints()
+    // {
+    //     return _bonusPoints;
+    // }
+    // public int GetTimesNeeded()
+    // {
+    //     return _timesNeeded;
+    // }
+    // public int GetTimesCompleted()
+    // {
+    //     return _timesCompleted;
+    // }
 
     
     public override string Serialize()
@@ -91,15 +91,15 @@ public class ChecklistGoal : Goal
     }
 
 
-    public override void AddPoints()
-    {
-        Game game1 = new Game();
-        game1.SetChecklistPoints(_pointValue);
-        if (_timesCompleted == _timesNeeded)
-        {
-            game1.SetChecklistPoints(_bonusPoints);
-        }
-    }
+    // public override void AddPoints()
+    // {
+    //     Game game1 = new Game();
+    //     game1.SetChecklistPoints(_pointValue);
+    //     if (_timesCompleted == _timesNeeded)
+    //     {
+    //         game1.SetChecklistPoints(_bonusPoints);
+    //     }
+    // }
 
 
     public override string SerializeForList()

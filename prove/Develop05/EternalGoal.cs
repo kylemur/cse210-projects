@@ -11,9 +11,9 @@ public class EternalGoal : Goal
         _isCompleted = false;
     }
     
-    public override void AddPoints()
-    {
-        Game game1 = new Game();
-        game1.SetEternalPoints(GetPointValue());
-    }
+    // public override void AddPoints()
+    // {
+    //     Game game1 = new Game();
+    //     game1.SetEternalPoints(GetPointValue());
+    // }
 }

@@ -6,9 +6,8 @@ public class SimpleGoal : Goal
     }
 
 
-    public override void AddPoints()
-    {
-        Game game1 = new Game();
-        game1.SetSimplePoints(GetPointValue());
-    }
+    // public override void AddPoints()
+    // {
+    //     GetPointValue();
+    // }
 }

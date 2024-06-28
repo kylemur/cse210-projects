@@ -86,19 +86,25 @@ class Program
                 if (yesNo == "y")
                 {
                     Console.Write("What is the name? ");
-                    string fileName = $"{Console.ReadLine()}.txt";
-                    _userName = fileName;
-                    game1.Load(_userName);
+                    string fileName = $"{Console.ReadLine()}";
+                    game1.Load(fileName);
+
+                    string filePath = Path.Combine("GoalGameInfo", $"{fileName}GoalInfo.txt");
+                    if (File.Exists(filePath))
+                    {
+                        _userName = fileName;
+                    }                    
                 }
                 
             }
             else if(option == "5")
             {
-                Console.WriteLine("The goals are: ");
-                // 1. name
-                // 2. name
-                Console.Write("Which goal did you accomplish? ");
-                string accomplishedGoal = Console.ReadLine();
+                game1.RecordEvent();
+                // Console.WriteLine("The goals are: ");
+                // // 1. name
+                // // 2. name
+                // Console.Write("Which goal did you accomplish? ");
+                // string accomplishedGoal = Console.ReadLine();
                 
                 // if(accomplishedGoal in list)
                 // {
