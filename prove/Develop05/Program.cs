@@ -75,6 +75,7 @@ class Program
                     Console.Write("What is the name? ");
                     string fileName = $"{Console.ReadLine()}";
                     game1.Save(fileName);
+                    _userName = fileName;
                 }
                 
             }

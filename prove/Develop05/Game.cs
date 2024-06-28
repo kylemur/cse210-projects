@@ -150,7 +150,6 @@ public class Game
                 outputFile.WriteLine(goal.Serialize());
             }
         }
-        Load(userName);
     }
     
 
