@@ -9,6 +9,19 @@ public abstract class Goal
 
     public Goal()
     {
+        // Console.Write("What is the name of your goal? ");
+        // _name = Console.ReadLine();
+
+        // Console.Write("What is a short description of it? ");
+        // _description = Console.ReadLine();
+
+        // Console.Write("What is the amount of points associated with this goal? ");
+        // _pointValue = int.Parse(Console.ReadLine());
+    }
+
+
+    public virtual void Start()
+    {
         Console.Write("What is the name of your goal? ");
         _name = Console.ReadLine();
 
@@ -19,7 +32,7 @@ public abstract class Goal
         _pointValue = int.Parse(Console.ReadLine());
     }
 
-
+    
     public void SetGoalType(string goalType)
     {
         _goalType = goalType;
@@ -63,6 +76,17 @@ public abstract class Goal
         return _isCompleted;
     }
 
+
+
+    public virtual string SerializeForList()
+    {
+        string completed = "[ ]";
+        if (GetCompleted() == true)
+        {
+            completed = "[x]";
+        }
+        return $"{completed} {GetName()} ({GetDescription()})";
+    }
 
 
 

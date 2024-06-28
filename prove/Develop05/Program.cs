@@ -4,11 +4,16 @@ class Program
 {
     static void Main(string[] args)
     {
+        Console.Write("What is your username? ");
+        string _userName = Console.ReadLine();
+
+        Game game1 = new();
+        game1.Load(_userName);
+
         string option = "";
-        while(option != "6")
+        while(option != "7")
         {
-            Game game1 = new();
-            Console.WriteLine("\nYou have {points} points.\n");
+            Console.WriteLine($"\n{_userName} has {game1.GetTotalPoints()} points.\n");
 
             Console.WriteLine("Menu Options:");
             Console.WriteLine(" 1. Create New Goal");
@@ -16,7 +21,8 @@ class Program
             Console.WriteLine(" 3. Save Goals");
             Console.WriteLine(" 4. Load Goals");
             Console.WriteLine(" 5. Record Event");
-            Console.WriteLine(" 6. Quit");
+            Console.WriteLine(" 6. Points Per Category");
+            Console.WriteLine(" 7. Quit");
             Console.Write("Select a choice from the menu: ");
             option = Console.ReadLine();
 
@@ -32,16 +38,19 @@ class Program
                 if(goalType == "1")
                 {
                     SimpleGoal simpleGoal1 = new SimpleGoal();
+                    simpleGoal1.Start();
                     game1.AddGoal(simpleGoal1);
                 }
                 else if(goalType == "2")
                 {
                     EternalGoal eternalGoal1 = new EternalGoal();
+                    eternalGoal1.Start();
                     game1.AddGoal(eternalGoal1);
                 }
                 else if(goalType == "3")
                 {
                     ChecklistGoal checklistGoal1 = new ChecklistGoal();
+                    checklistGoal1.Start();
                     game1.AddGoal(checklistGoal1);
                 }
                 else
@@ -51,19 +60,37 @@ class Program
             }
             else if(option == "2")
             {
-                // 1. [x] _name (_description)
-                // 2. [ ] _name (_description)
-                // 3. [ ] _name (_description) -- Currently completed: _timesCompleted/_timesNeeded
+                game1.DisplayGoalList();
             }
             else if(option == "3")
             {
-                Console.Write("What is the filename for the goal file? ");
-                string fileName = Console.ReadLine();
+                Console.WriteLine($"Would you like to: \n 1. Save to {_userName}GoalInfo.txt \n 2. Save to another name? ");
+                string saveAs = Console.ReadLine();
+                if (saveAs == "1")
+                {
+                    game1.Save(_userName);
+                }
+                else if (saveAs == "2")
+                {
+                    Console.Write("What is the name? ");
+                    string fileName = $"{Console.ReadLine()}";
+                    game1.Save(fileName);
+                }
+                
             }
             else if(option == "4")
             {
-                // save points
-                // save attributes for all classes
+                Console.WriteLine($"{_userName}GoalInfo.txt has already been loaded.");
+                Console.Write("Do you want to load GoalInfo for another name? (y/n) ");
+                string yesNo = Console.ReadLine();
+                if (yesNo == "y")
+                {
+                    Console.Write("What is the name? ");
+                    string fileName = $"{Console.ReadLine()}.txt";
+                    _userName = fileName;
+                    game1.Load(_userName);
+                }
+                
             }
             else if(option == "5")
             {
@@ -85,7 +112,11 @@ class Program
                 //     Console.WriteLine("Invalid entry.");
                 // }
             }
-            else if(option == "6")
+            else if (option == "6")
+            {
+                game1.DisplayPointsDetails();
+            }
+            else if(option == "7")
             {
                 Console.WriteLine("Goodbye.");
             }

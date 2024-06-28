@@ -1,0 +1,4 @@
+0~3~2~0
+SimpleGoal~NAME~DESCRIPTION~False~99
+SimpleGoal~testgoal~testdesc~False~123
+SimpleGoal~name~description~False~22

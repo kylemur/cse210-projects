@@ -9,6 +9,25 @@ public class ChecklistGoal : Goal
     {
         SetGoalType("ChecklistGoal");
 
+        // Console.Write("How many times does this goal need to be completed for a bonus? ");
+        // _timesNeeded = int.Parse(Console.ReadLine());
+        
+        // Console.Write($"What is the bonus for accomplishing it {_timesNeeded} times? ");
+        // _bonusPoints = int.Parse(Console.ReadLine());
+    }
+
+
+    public override void Start()
+    {
+        Console.Write("What is the name of your goal? ");
+        _name = Console.ReadLine();
+
+        Console.Write("What is a short description of it? ");
+        _description = Console.ReadLine();
+
+        Console.Write("What is the amount of points associated with this goal? ");
+        _pointValue = int.Parse(Console.ReadLine());
+        
         Console.Write("How many times does this goal need to be completed for a bonus? ");
         _timesNeeded = int.Parse(Console.ReadLine());
         
@@ -80,6 +99,17 @@ public class ChecklistGoal : Goal
         {
             game1.SetChecklistPoints(_bonusPoints);
         }
+    }
+
+
+    public override string SerializeForList()
+    {
+        string completed = "[ ]";
+        if (_isCompleted == true)
+        {
+            completed = "[x]";
+        }
+        return $"{completed} {_name} ({_description}) -- Currently completed: {_timesCompleted}/{_timesNeeded}";
     }
 
     // public override void SaveAttributes()
