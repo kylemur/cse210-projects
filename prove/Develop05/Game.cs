@@ -113,15 +113,27 @@ public class Game
 
     public void DisplayPointsDetails() // Display all points earned from each category and percentage of total, then display the total points 
     {
-        int simplePercent = _simplePoints / _totalPoints;
-        Console.WriteLine($"  {_simplePoints} ({simplePercent}) SimpleGoal points");
+        bool zeroTotal = false;
+        if (_totalPoints == 0)
+        {
+            _totalPoints = 1; // Prevent divide by zero error
+            zeroTotal = true;
+        }
 
-        int eternalPercent = _eternalPoints / _totalPoints;
-        Console.WriteLine($"+ {_eternalPoints} ({eternalPercent}) EternalGoal points");
+        int simplePercent = _simplePoints * 100 / _totalPoints;
+        Console.WriteLine($"  {_simplePoints} (~{simplePercent}%) SimpleGoal points");
 
-        int checklistPercent = _checklistPoints / _totalPoints;
-        Console.WriteLine($"+ {_checklistPoints} ({checklistPercent}) ChecklistGoal points");
+        int eternalPercent = _eternalPoints * 100 / _totalPoints;
+        Console.WriteLine($"+ {_eternalPoints} (~{eternalPercent}%) EternalGoal points");
+
+        int checklistPercent = _checklistPoints * 100 / _totalPoints;
+        Console.WriteLine($"+ {_checklistPoints} (~{checklistPercent}%) ChecklistGoal points");
         Console.WriteLine("..................................");
+
+        if (zeroTotal == true)
+        {
+            _totalPoints = 0; // Reset correct total points
+        }
         Console.WriteLine($"= {_totalPoints} Total");
     }
 

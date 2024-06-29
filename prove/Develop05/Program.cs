@@ -25,10 +25,12 @@ class Program
             Console.WriteLine(" 7. Quit");
             Console.Write("Select a choice from the menu: ");
             option = Console.ReadLine();
+            Console.WriteLine(" "); // makes a clear line for formatting/organization
+
 
             if(option == "1") // Create New Goal
             {
-                Console.WriteLine("\nThe types of goals are:");
+                Console.WriteLine("The types of goals are:");
                 Console.WriteLine(" 1. Simple Goal");
                 Console.WriteLine(" 2. Eternal Goal");
                 Console.WriteLine(" 3. Checklist Goal");
