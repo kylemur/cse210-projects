@@ -4,7 +4,6 @@ using System.IO;
 public class Game
 {
     private string _pointsAttributes;
-    // private List<string> _classAttributesList = new();
     private List<Goal> _goalsList = new();
     private int _totalPoints;
     private int _simplePoints;
@@ -62,7 +61,7 @@ public class Game
         foreach (Goal g in _goalsList)
         {
             order += 1;
-            Console.WriteLine($"{order}. {g.GetName()}");
+            Console.WriteLine($"{order}. {g.GetName()}"); // Displays each goal name in chronological order 
         }
 
         Console.Write("Which goal did you accomplish? ");
@@ -70,14 +69,15 @@ public class Game
         int i = goalAccomplished - 1;
 
         int pointsEarned = 0;
-        if (_goalsList[i].GetGoalType() == "SimpleGoal")
+
+        if (_goalsList[i].GetGoalType() == "SimpleGoal") // Set completed and add points
         {
             _goalsList[i].SetCompleted(true);
             pointsEarned = _goalsList[i].GetPointValue();
             SetSimplePoints(pointsEarned);
             SetTotalPoints();
         }
-        else if (_goalsList[i].GetGoalType() == "EternalGoal")
+        else if (_goalsList[i].GetGoalType() == "EternalGoal") // Set completed to always false, then add points
         {
             pointsEarned = _goalsList[i].GetPointValue();
             SetEternalPoints(pointsEarned);
@@ -85,19 +85,25 @@ public class Game
         }
         else if (_goalsList[i].GetGoalType() == "ChecklistGoal")
         {
-            _goalsList[i].SetTimesCompleted(1);
-            if (_goalsList[i].GetTimesCompleted() == _goalsList[i].GetTimesNeeded())
+            // Assuming _goalsList[i] can be cast to ChecklistGoal safely
+            ChecklistGoal checklistGoal = _goalsList[i] as ChecklistGoal; // Change List<Goal> object to specify ChecklistGoal and uses its methods. This part came from GitHub Copilot.
+            if (checklistGoal != null)
             {
-                _goalsList[i].SetCompleted(true);
-                pointsEarned = _goalsList[i].GetPointValue() + _goalsList[i].GetBonusPoints();
-                SetChecklistPoints(pointsEarned);
-                SetTotalPoints();
-            }
-            else
-            {
-                pointsEarned = _goalsList[i].GetPointValue();
-                SetChecklistPoints(pointsEarned);
-                SetTotalPoints();
+                // Now you can work with checklistGoal as a ChecklistGoal object
+                checklistGoal.SetTimesCompleted(1);
+                if (checklistGoal.GetTimesCompleted() == checklistGoal.GetTimesNeeded()) // Give points plus bonus points if completed enough times
+                {
+                    checklistGoal.SetCompleted(true);
+                    pointsEarned = checklistGoal.GetPointValue() + checklistGoal.GetBonusPoints();
+                    SetChecklistPoints(pointsEarned);
+                    SetTotalPoints();
+                }
+                else
+                {
+                    pointsEarned = checklistGoal.GetPointValue(); // Give points and add to number of times completed
+                    SetChecklistPoints(pointsEarned);
+                    SetTotalPoints();
+                }
             }
         }
         Console.WriteLine($"Congradulations! You have earned {pointsEarned} points! ");
@@ -105,12 +111,17 @@ public class Game
     }
 
 
-    public void DisplayPointsDetails()
+    public void DisplayPointsDetails() // Display all points earned from each category and percentage of total, then display the total points 
     {
-        Console.WriteLine($"  {_simplePoints} SimpleGoal points");
-        Console.WriteLine($"+ {_eternalPoints} EternalGoal points");
-        Console.WriteLine($"+ {_checklistPoints} ChecklistGoal points");
-        Console.WriteLine("........................");
+        int simplePercent = _simplePoints / _totalPoints;
+        Console.WriteLine($"  {_simplePoints} ({simplePercent}) SimpleGoal points");
+
+        int eternalPercent = _eternalPoints / _totalPoints;
+        Console.WriteLine($"+ {_eternalPoints} ({eternalPercent}) EternalGoal points");
+
+        int checklistPercent = _checklistPoints / _totalPoints;
+        Console.WriteLine($"+ {_checklistPoints} ({checklistPercent}) ChecklistGoal points");
+        Console.WriteLine("..................................");
         Console.WriteLine($"= {_totalPoints} Total");
     }
 
@@ -133,13 +144,11 @@ public class Game
 
 
 
-
-
-    public void Save(string userName)
+    public void Save(string userName) // Save to specified file (updates existing file, otherwise creates new file)
     {
-        _pointsAttributes = $"{_totalPoints}~{_simplePoints}~{_eternalPoints}~{_checklistPoints}";
+        _pointsAttributes = $"{_totalPoints}~{_simplePoints}~{_eternalPoints}~{_checklistPoints}"; // Serialize points
 
-        string fileName = Path.Combine("GoalGameInfo", $"{userName}GoalInfo.txt");
+        string fileName = Path.Combine("GoalGameInfo", $"{userName}GoalInfo.txt"); // I got this from GitHub Copilot.
 
         using (StreamWriter outputFile = new StreamWriter(fileName))
         {
@@ -163,7 +172,7 @@ public class Game
         {
             try
             {
-                _pointsAttributes = "0~0~0~0";
+                _pointsAttributes = "0~0~0~0"; // Reset values before loading from a file
                 _totalPoints = 0;
                 _simplePoints = 0;
                 _eternalPoints = 0;
@@ -172,11 +181,9 @@ public class Game
                 _goalsList.Clear();
 
 
-
-                string[] lines = File.ReadAllLines(filename);
-                // Process the lines as needed
+                string[] lines = File.ReadAllLines(filename); // Get each line from the file
             
-                string[] pointsParts = lines[0].Split("~");
+                string[] pointsParts = lines[0].Split("~"); // Get points info
 
                 _totalPoints = int.Parse(pointsParts[0]);
                 _simplePoints = int.Parse(pointsParts[1]);
@@ -186,7 +193,7 @@ public class Game
                 for (int i = 1; i < lines.Count(); i++)
                 {
                     string[] goalsParts = lines[i].Split("~");
-                    if (goalsParts[0] == "SimpleGoal")
+                    if (goalsParts[0] == "SimpleGoal") // Get goal type and create a new SimpleGoal object with the info
                     {
                         SimpleGoal simpleGoal1 = new();
                         simpleGoal1.SetGoalType(goalsParts[0]);
@@ -196,9 +203,8 @@ public class Game
                         simpleGoal1.SetPointValue(Convert.ToInt16(goalsParts[4]));
 
                         _goalsList.Add(simpleGoal1);
-
                     }
-                    else if (goalsParts[0] == "EternalGoal")
+                    else if (goalsParts[0] == "EternalGoal") // Get goal type and create a new EternalGoal object with the info
                     {
                         EternalGoal eternalGoal1 = new();
                         eternalGoal1.SetGoalType(goalsParts[0]);
@@ -209,7 +215,7 @@ public class Game
 
                         _goalsList.Add(eternalGoal1);
                     }
-                    else if (goalsParts[0] == "ChecklistGoal")
+                    else if (goalsParts[0] == "ChecklistGoal") // Get goal type and create a new ChecklistGoal object with the info
                     {
                         ChecklistGoal checklistGoal1 = new();
                         checklistGoal1.SetGoalType(goalsParts[0]);

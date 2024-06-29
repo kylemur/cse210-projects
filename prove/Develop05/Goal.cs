@@ -1,4 +1,4 @@
-public class Goal // was    public abstract class Goal     but I had issues using ChecklistGoal methods so I put them in base class
+public class Goal // I only used virtual metods, no abstract. 
 {
     protected string _goalType;
     protected string _name;
@@ -6,21 +6,9 @@ public class Goal // was    public abstract class Goal     but I had issues usin
     protected int _pointValue;
     protected bool _isCompleted;
 
-    protected int _timesNeeded;
-    protected int _timesCompleted;
-    protected int _bonusPoints;
-
-
     public Goal()
     {
-        // Console.Write("What is the name of your goal? ");
-        // _name = Console.ReadLine();
-
-        // Console.Write("What is a short description of it? ");
-        // _description = Console.ReadLine();
-
-        // Console.Write("What is the amount of points associated with this goal? ");
-        // _pointValue = int.Parse(Console.ReadLine());
+        
     }
 
 
@@ -57,11 +45,7 @@ public class Goal // was    public abstract class Goal     but I had issues usin
     {
         _isCompleted = isCompleted;
     }
-    public void SetTimesCompleted(int timesCompleted)
-    {
-        _timesCompleted += timesCompleted;
-    }
-
+    
 
     public string GetGoalType()
     {
@@ -84,20 +68,6 @@ public class Goal // was    public abstract class Goal     but I had issues usin
         return _isCompleted;
     }
 
-    public int GetBonusPoints()
-    {
-        return _bonusPoints;
-    }
-    public int GetTimesNeeded()
-    {
-        return _timesNeeded;
-    }
-    public int GetTimesCompleted()
-    {
-        return _timesCompleted;
-    }
-
-
 
     public virtual string SerializeForList()
     {
@@ -108,8 +78,6 @@ public class Goal // was    public abstract class Goal     but I had issues usin
         }
         return $"{completed} {GetName()} ({GetDescription()})";
     }
-
-
 
     public virtual string Serialize()
     {
@@ -130,48 +98,5 @@ public class Goal // was    public abstract class Goal     but I had issues usin
             _isCompleted = Convert.ToBoolean(parts[3]);
             _pointValue = Convert.ToInt16(parts[4]);
         }
-
     }
-
-
-    // public abstract void AddPoints();
-
-
-    // public virtual void SaveAttributes()
-    // {
-    //     // _classAttributes = $"{_type}:{_name}~{_description}~{_completed}~{_pointValue}";
-
-
-    //     // string filename = "myFile.txt";
-    //     // string[] lines = System.IO.File.ReadAllLines(filename);
-
-    //     // foreach (string line in lines)
-    //     // {
-    //     //     string[] parts = line.Split("~");
-
-    //     //     _name = parts[0];
-    //     //     _description = parts[1];
-    //     //     _completed = parts[2];
-    //     //     _pointValue = parts[3];
-    //     // }
-    // }
-    // public virtual void LoadAttributes()
-    // {
-    //     // // Don't forget to put this at the top, so C# knows where to find the StreamWriter class
-    //     // using System.IO; 
-
-    //     // ...
-
-    //     // string fileName = "myFile.txt";
-
-    //     // using (StreamWriter outputFile = new StreamWriter(filename))
-    //     // {
-    //     //     // You can add text to the file with the WriteLine method
-    //     //     outputFile.WriteLine("This will be the first line in the file.");
-            
-    //     //     // You can use the $ and include variables just like with Console.WriteLine
-    //     //     string color = "Blue";
-    //     //     outputFile.WriteLine($"My favorite color is {color}");
-    //     // }
-    // }
 }

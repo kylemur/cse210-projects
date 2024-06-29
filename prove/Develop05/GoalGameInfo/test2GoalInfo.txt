@@ -1,6 +1,9 @@
-324~244~25~55
+441~264~47~130
 SimpleGoal~NAME~DESCRIPTION~True~99
 SimpleGoal~testgoal~testdesc~True~123
 SimpleGoal~name~description~True~22
 EternalGoal~eternalg~4eva~False~25
 ChecklistGoal~checkg~several times~True~5~35~4~3
+SimpleGoal~simple1~desc simp1~True~10
+EternalGoal~eternal1~desc etern1~False~11
+ChecklistGoal~check1~desc check1~True~12~15~5~4

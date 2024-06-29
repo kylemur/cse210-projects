@@ -4,3 +4,4 @@ SimpleGoal~testgoal~testdesc~True~123
 SimpleGoal~name~description~True~22
 EternalGoal~eternalg~4eva~False~25
 ChecklistGoal~checkg~several times~True~5~35~4~3
+SimpleGoal~simple1~desc simp1~False~10

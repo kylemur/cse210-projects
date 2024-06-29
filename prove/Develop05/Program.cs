@@ -26,14 +26,15 @@ class Program
             Console.Write("Select a choice from the menu: ");
             option = Console.ReadLine();
 
-            if(option == "1")
+            if(option == "1") // Create New Goal
             {
-                Console.WriteLine("The types of goals are:");
+                Console.WriteLine("\nThe types of goals are:");
                 Console.WriteLine(" 1. Simple Goal");
                 Console.WriteLine(" 2. Eternal Goal");
                 Console.WriteLine(" 3. Checklist Goal");
                 Console.Write("Which type of goal would you like to create? ");
                 string goalType = Console.ReadLine();
+                Console.WriteLine(" "); // makes a clear line for formatting/organization
 
                 if(goalType == "1")
                 {
@@ -58,13 +59,14 @@ class Program
                     Console.WriteLine("Invalid entry.");
                 }
             }
-            else if(option == "2")
+            else if(option == "2") // List Goals
             {
                 game1.DisplayGoalList();
             }
-            else if(option == "3")
+            else if(option == "3") // Save
             {
-                Console.WriteLine($"Would you like to: \n 1. Save to {_userName}GoalInfo.txt \n 2. Save to another name? ");
+                Console.WriteLine($"Options: \n 1. Save to {_userName}GoalInfo.txt \n 2. Save to another name? ");
+                Console.Write("Select an option: ");
                 string saveAs = Console.ReadLine();
                 if (saveAs == "1")
                 {
@@ -77,9 +79,8 @@ class Program
                     game1.Save(fileName);
                     _userName = fileName;
                 }
-                
             }
-            else if(option == "4")
+            else if(option == "4") // Load
             {
                 Console.WriteLine($"{_userName}GoalInfo.txt has already been loaded.");
                 Console.Write("Do you want to load GoalInfo for another name? (y/n) ");
@@ -96,34 +97,16 @@ class Program
                         _userName = fileName;
                     }                    
                 }
-                
             }
-            else if(option == "5")
+            else if(option == "5") // Record Event and add points
             {
                 game1.RecordEvent();
-                // Console.WriteLine("The goals are: ");
-                // // 1. name
-                // // 2. name
-                // Console.Write("Which goal did you accomplish? ");
-                // string accomplishedGoal = Console.ReadLine();
-                
-                // if(accomplishedGoal in list)
-                // {
-                //     int points = specificGoal.GetPointValue();
-                //     specificGoal.AddPoints();
-                //     Console.WriteLine($"Congradulations! You have earned {points} points! ");
-                //     Console.WriteLine($"You now have {totalPoints} points! ");
-                // }
-                // else
-                // {
-                //     Console.WriteLine("Invalid entry.");
-                // }
             }
-            else if (option == "6")
+            else if (option == "6") // Display points from each goal type and the total points
             {
                 game1.DisplayPointsDetails();
             }
-            else if(option == "7")
+            else if(option == "7") // Exit and end program
             {
                 Console.WriteLine("Goodbye.");
             }

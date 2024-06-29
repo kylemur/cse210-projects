@@ -1,4 +1,4 @@
 totalPoints~simplePoints~eternalPoints~checklistPoints
-goalType:name~description~pointValue~isCompleted
-goalType:name~description~pointValue~isCompleted
-goalType:name~description~pointValue~isCompleted~bonusPoints~timesCompleted~timesNeeded
+goalType:name~description~pointValue~isCompleted // SimpleGoal
+goalType:name~description~pointValue~isCompleted // EternalGoal (isCompleted is always false)
+goalType:name~description~pointValue~isCompleted~bonusPoints~timesCompleted~timesNeeded // ChecklistGoal

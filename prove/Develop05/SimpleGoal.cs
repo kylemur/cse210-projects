@@ -4,10 +4,4 @@ public class SimpleGoal : Goal
     {
         SetGoalType("SimpleGoal");
     }
-
-
-    // public override void AddPoints()
-    // {
-    //     GetPointValue();
-    // }
 }
