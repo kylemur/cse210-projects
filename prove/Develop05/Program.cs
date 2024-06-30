@@ -1,3 +1,6 @@
+// I added an option to see how many points have been earned from each goal type as well as the total points. 
+// The save and load are associated with a user name (that is changed to a .txt file) and the program can easily load and move to the goals of another username. 
+
 using System;
 
 class Program
