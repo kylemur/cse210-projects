@@ -14,11 +14,6 @@ class Basketball : SportingEvent
 
     public Basketball(string team, float duration, string location, string playingSurface, int penalties, int pointsConceded, int shots, int shotsMade,  int saves, int threeShots, int threeShotsMade, int freeThrows, int freeMade) : base(team, duration, location, playingSurface, penalties)
     {
-        _team = team;
-        _duration = duration;
-        _location = location;
-        _playingSurface = playingSurface;
-        _penalties = penalties;
         _pointsConceded = pointsConceded;
         _shots = shots;
         _shotsMade = shotsMade;
@@ -77,7 +72,6 @@ class Basketball : SportingEvent
         Console.WriteLine(_location);
         Console.WriteLine(_playingSurface);
         Console.WriteLine(_penalties);
-        Console.WriteLine(_outcome);
         Console.WriteLine(_points);
         Console.WriteLine(_pointsConceded);
         Console.WriteLine(_shots);
@@ -90,13 +84,12 @@ class Basketball : SportingEvent
         Console.WriteLine(_freeMade);
         Console.WriteLine(_freePercent);
     }
-    
-    
+
     
 
     public override void SaveAttributes(string team) // Save to a text file (updates existing file, otherwise creates new file)
     {
-        string _attributes = $"{_outcome}~{_team}~{_duration}~{_location}~{_playingSurface}~{_penalties}~{_goals}~{_goalsConceded}~{_shots}~{_shotsOnGoal}~{_saves}~{_yellowCards}~{_redCards}"; // Serialize attributes
+        string _attributes = $"{_outcome}~{_team}~{_duration}~{_location}~{_playingSurface}~{_penalties}~{_points}~{_pointsConceded}~{_shots}~{_shotsMade}~{_shotPercent}~{_threeShots}~{_threeShotsMade}~{_threePercent}~{_freeThrows}~{_freeMade}~{_freePercent}"; // Serialize attributes
 
         string fileName = Path.Combine("Stats", $"{team}Info.txt"); // I got this from GitHub Copilot.
 
@@ -125,7 +118,7 @@ class Basketball : SportingEvent
                 // _checklistPoints = 0;
 
                 // _goalsList.Clear();
-                // string team, float duration, string location, string playingSurface, int penalties, int goals, int goalsConceded, int shots, int shotsOnGoal,  int saves, int yellowCards, int redcards
+                // {_points}~{_pointsConceded}~{_shots}~{_shotsMade}~{_shotPercent}~{_threeShots}~{_threeShotsMade}~{_threePercent}~{_freeThrows}~{_freeMade}~{_freePercent
 
 
                 string[] lines = File.ReadAllLines(filename); // Get each line from the file
@@ -138,13 +131,17 @@ class Basketball : SportingEvent
                 _location = parts[3];
                 _playingSurface = parts[4];
                 _penalties = int.Parse(parts[5]);
-                _goals = int.Parse(parts[6]);
-                _goalsConceded = int.Parse(parts[7]);
+                _points = int.Parse(parts[6]);
+                _pointsConceded = int.Parse(parts[7]);
                 _shots = int.Parse(parts[8]);
-                _shotsOnGoal = int.Parse(parts[9]);
-                _saves = int.Parse(parts[10]);
-                _yellowCards = int.Parse(parts[11]);
-                _redCards = int.Parse(parts[12]);        
+                _shotsMade = int.Parse(parts[9]);
+                _shotPercent = int.Parse(parts[10]);
+                _threeShots = int.Parse(parts[11]);
+                _threeShotsMade = int.Parse(parts[12]);
+                _threePercent = int.Parse(parts[13]);
+                _freeThrows = int.Parse(parts[14]);
+                _freeMade = int.Parse(parts[15]);
+                _freePercent = int.Parse(parts[16]);
             }
             catch (IOException ex)
             {

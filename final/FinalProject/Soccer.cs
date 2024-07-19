@@ -44,7 +44,6 @@ class Soccer : SportingEvent
         Console.WriteLine(_location);
         Console.WriteLine(_playingSurface);
         Console.WriteLine(_penalties);
-        Console.WriteLine(_outcome);
         Console.WriteLine(_goals);
         Console.WriteLine(_goalsConceded);
         Console.WriteLine(_shots);

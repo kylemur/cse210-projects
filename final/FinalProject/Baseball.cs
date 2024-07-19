@@ -11,23 +11,24 @@ class Baseball : SportingEvent
 
     public Baseball(string team, float duration, string location, string playingSurface, int penalties, int runs, int runsConceded, int foulBalls, int strikes,  int singles, int doubles, int triples, int homeRuns) : base(team, duration, location, playingSurface, penalties)
     {
-        _goals = goals;
-        _goalsConceded = goalsConceded;
-        _shots = shots;
-        _shotsOnGoal = shotsOnGoal;
-        _saves = saves;
-        _yellowCards = yellowCards;
-        _redCards = redcards;
+        _runs = runs;
+        _runsConceded = runsConceded;
+        _foulBalls = foulBalls;
+        _strikes = strikes;
+        _singles = singles;
+        _doubles = doubles;
+        _triples = triples;
+        _homeRuns = homeRuns;
         SetOutcome();
     }
 
     public override void SetOutcome()
     {
-        if (_goals > _goalsConceded)
+        if (_runs > _runsConceded)
         {
             _outcome = Outcome.Won;
         }
-        else if (_goals == _goalsConceded)
+        else if (_runs == _runsConceded)
         {
             _outcome = Outcome.Tied;
         }
@@ -46,13 +47,14 @@ class Baseball : SportingEvent
         Console.WriteLine(_playingSurface);
         Console.WriteLine(_penalties);
         Console.WriteLine(_outcome);
-        Console.WriteLine(_goals);
-        Console.WriteLine(_goalsConceded);
-        Console.WriteLine(_shots);
-        Console.WriteLine(_shotsOnGoal);
-        Console.WriteLine(_saves);
-        Console.WriteLine(_yellowCards);
-        Console.WriteLine(_redCards);
+        Console.WriteLine(_runs);
+        Console.WriteLine(_runsConceded);
+        Console.WriteLine(_foulBalls);
+        Console.WriteLine(_strikes);
+        Console.WriteLine(_singles);
+        Console.WriteLine(_doubles);
+        Console.WriteLine(_triples);
+        Console.WriteLine(_homeRuns);
     }
     
     
@@ -60,7 +62,7 @@ class Baseball : SportingEvent
 
     public override void SaveAttributes(string team) // Save to a text file (updates existing file, otherwise creates new file)
     {
-        string _attributes = $"{_outcome}~{_team}~{_duration}~{_location}~{_playingSurface}~{_penalties}~{_goals}~{_goalsConceded}~{_shots}~{_shotsOnGoal}~{_saves}~{_yellowCards}~{_redCards}"; // Serialize attributes
+        string _attributes = $"{_outcome}~{_team}~{_duration}~{_location}~{_playingSurface}~{_penalties}~{_runs}~{_runsConceded}~{_foulBalls}~{_strikes}~{_singles}~{_doubles}~{_triples}~{_homeRuns}"; // Serialize attributes
 
         string fileName = Path.Combine("Stats", $"{team}Info.txt"); // I got this from GitHub Copilot.
 
@@ -89,7 +91,7 @@ class Baseball : SportingEvent
                 // _checklistPoints = 0;
 
                 // _goalsList.Clear();
-                // string team, float duration, string location, string playingSurface, int penalties, int goals, int goalsConceded, int shots, int shotsOnGoal,  int saves, int yellowCards, int redcards
+                // {_foulBalls}~{_strikes}~{_singles}~{_doubles}~{_triples}~{_homeRuns}
 
 
                 string[] lines = File.ReadAllLines(filename); // Get each line from the file
@@ -102,13 +104,14 @@ class Baseball : SportingEvent
                 _location = parts[3];
                 _playingSurface = parts[4];
                 _penalties = int.Parse(parts[5]);
-                _goals = int.Parse(parts[6]);
-                _goalsConceded = int.Parse(parts[7]);
-                _shots = int.Parse(parts[8]);
-                _shotsOnGoal = int.Parse(parts[9]);
-                _saves = int.Parse(parts[10]);
-                _yellowCards = int.Parse(parts[11]);
-                _redCards = int.Parse(parts[12]);        
+                _runs = int.Parse(parts[6]);
+                _runsConceded = int.Parse(parts[7]);
+                _foulBalls = int.Parse(parts[8]);
+                _strikes = int.Parse(parts[9]);
+                _singles = int.Parse(parts[10]);
+                _doubles = int.Parse(parts[11]);
+                _triples = int.Parse(parts[12]);
+                _homeRuns = int.Parse(parts[13]);
             }
             catch (IOException ex)
             {

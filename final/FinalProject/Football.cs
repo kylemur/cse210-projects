@@ -49,12 +49,21 @@ class Football : SportingEvent
     public override void DisplayAttributes()
     {
         Console.WriteLine(_outcome);
-        Console.WriteLine(_goals);
-        Console.WriteLine(_goalsConceded);
-        Console.WriteLine(_shots);
-        Console.WriteLine(_shotsOnGoal);
-        Console.WriteLine(_saves);
-        Console.WriteLine(_penBoxMins);
+        Console.WriteLine(_team);
+        Console.WriteLine(_duration);
+        Console.WriteLine(_location);
+        Console.WriteLine(_playingSurface);
+        Console.WriteLine(_penalties);
+        Console.WriteLine(_points);
+        Console.WriteLine(_pointsConceded);
+        Console.WriteLine(_touchdowns);
+        Console.WriteLine(_fieldGoals);
+        Console.WriteLine(_PATs);
+        Console.WriteLine(_twoPt);
+        Console.WriteLine(_otherPoints);
+        Console.WriteLine(_yardsO);
+        Console.WriteLine(_yardsD);
+        Console.WriteLine(_turnovers);
     }
     
     
@@ -62,7 +71,7 @@ class Football : SportingEvent
 
     public override void SaveAttributes(string team) // Save to a text file (updates existing file, otherwise creates new file)
     {
-        string _attributes = $"{_goals}~{_goalsConceded}~{_shots}~{_shotsOnGoal}~{_saves}~{_penBoxMins}"; // Serialize attributes
+        string _attributes = $"{_outcome}~{_team}~{_duration}~{_location}~{_playingSurface}~{_penalties}~{_points}~{_pointsConceded}~{_touchdowns}~{_fieldGoals}~{_PATs}~{_otherPoints}~{_yardsO}{_yardsD}~{_turnovers}"; // Serialize attributes
 
         string fileName = Path.Combine("Stats", $"{team}Info.txt"); // I got this from GitHub Copilot.
 
@@ -103,12 +112,15 @@ class Football : SportingEvent
                 _location = parts[3];
                 _playingSurface = parts[4];
                 _penalties = int.Parse(parts[5]);
-                _goals = int.Parse(parts[6]);
-                _goalsConceded = int.Parse(parts[7]);
-                _shots = int.Parse(parts[8]);
-                _shotsOnGoal = int.Parse(parts[9]);
-                _saves = int.Parse(parts[10]);
-                _penBoxMins = int.Parse(parts[11]);   
+                _points = int.Parse(parts[6]);
+                _pointsConceded = int.Parse(parts[7]);
+                _touchdowns = int.Parse(parts[8]);
+                _fieldGoals = int.Parse(parts[9]);
+                _PATs = int.Parse(parts[10]);
+                _otherPoints = int.Parse(parts[11]);
+                _yardsO = int.Parse(parts[12]);
+                _yardsD = int.Parse(parts[13]);
+                _turnovers = int.Parse(parts[14]);
             }
             catch (IOException ex)
             {
