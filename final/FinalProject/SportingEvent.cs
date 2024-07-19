@@ -1,26 +1,35 @@
 abstract class SportingEvent
 {
-    private List<string> _players = new();
+    public enum Outcome { Won, Lost, Tied }
+    protected Outcome _outcome;
+    protected string _team;
+    protected float _duration;
+    protected string _location;
+    protected string _playingSurface;
+    protected int _penalties;
 
-    // private enum _outcome = won, lost, tied, other
-
-    private float _duration;
-    private string _location;
-    private string _playingSurface;
-    private int _penalties;
-
-    public SportingEvent(float duration, string location, string playingSurface, int penalties)
+    public SportingEvent(string team, float duration, string location, string playingSurface, int penalties)
     {
-
+        _team = team;
+        _duration = duration;
+        _location = location;
+        _playingSurface = playingSurface;
+        _penalties = penalties;
     }
 
-    public void AddPlayer()
-    {
-
-    }
+    
     public abstract void SetOutcome();
 
-    public abstract void SaveAttributes();
-    public abstract void LoadAttributes();
+    public Outcome GetOutcome()
+    {
+        return _outcome;
+    }
+
+    public virtual void DisplayAttributes()
+    {
+
+    }
+    public abstract void SaveAttributes(string team);
+    public abstract void LoadAttributes(string team);
 
 }

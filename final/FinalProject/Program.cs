@@ -28,31 +28,31 @@ class Program
             {
 
             }
-            else if (option == "2")
+            else if (option == "2") // Basketball
             {
 
             }
-            else if (option == "3")
+            else if (option == "3") // Football
             {
 
             }
-            else if (option == "4")
+            else if (option == "4") // Golf
             {
 
             }
-            else if (option == "5")
+            else if (option == "5") // Hockey
             {
 
             }
-            else if (option == "6")
+            else if (option == "6") // Soccer
             {
 
             }
-            else if (option == "7")
+            else if (option == "7") // Wrestling
             {
 
             }
-            else if (option == "8")
+            else if (option == "8") // Exit
             {
                 Console.WriteLine("Goodbye.");
             }

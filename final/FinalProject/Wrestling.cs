@@ -8,7 +8,7 @@ class Wrestling : SportingEvent
     private int _fivePoint;
     private bool _pin;
 
-    public Wrestling(float duration, string location, string playingSurface, int penalties, int pointsConceded, int onePoint, int twoPoint, int fourPoint,  int fivePoint, bool pin) : base(duration, location, playingSurface, penalties)
+    public Wrestling(string team, float duration, string location, string playingSurface, int penalties, int pointsConceded, int onePoint, int twoPoint, int fourPoint,  int fivePoint, bool pin) : base(team, duration, location, playingSurface, penalties)
     {
 
     }
@@ -18,6 +18,10 @@ class Wrestling : SportingEvent
         
     }
 
+    public override void DisplayAttributes()
+    {
+        
+    }
     public override void SaveAttributes()
     {
         

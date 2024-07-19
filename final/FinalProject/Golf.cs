@@ -14,7 +14,7 @@ class Golf : SportingEvent
     private int _threeBogey;
     private int _moreBogey;
 
-    public Golf(float duration, string location, string playingSurface, int penalties) : base(duration, location, playingSurface, penalties)
+    public Golf(string team, float duration, string location, string playingSurface, int penalties) : base(team, duration, location, playingSurface, penalties)
     {
 
     }
@@ -35,7 +35,7 @@ class Golf : SportingEvent
     }
     public void SetTotalStrokes()
     {
-        
+
     }
 
     public override void SetOutcome()
@@ -43,6 +43,10 @@ class Golf : SportingEvent
         
     }
 
+    public override void DisplayAttributes()
+    {
+        
+    }
     public override void SaveAttributes()
     {
         
