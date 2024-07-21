@@ -2,7 +2,12 @@ class Attributes
 {
     private List<SportingEvent> _attributes = new();
 
-    public void Display(SportingEvent classType)
+    public Attributes()
+    {
+        Load();
+    }
+
+    public void Display()
     {
         foreach (SportingEvent se in _attributes)
         {
@@ -10,7 +15,7 @@ class Attributes
         }
     }
 
-    public void Save(SportingEvent classType)
+    public void Save()
     {
         foreach (SportingEvent se in _attributes)
         {
@@ -18,11 +23,19 @@ class Attributes
         }
     }
 
-    public void Load(SportingEvent classType)
+    public void Load()
     {
         foreach (SportingEvent se in _attributes)
         {
             se.LoadAttributes();
         }
     }
+
+    // public void Load(SportingEvent classType)
+    // {
+    //     foreach (SportingEvent se in _attributes)
+    //     {
+    //         se.LoadAttributes();
+    //     }
+    // }
 }

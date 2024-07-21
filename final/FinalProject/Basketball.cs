@@ -4,15 +4,15 @@ class Basketball : SportingEvent
     private int _pointsConceded;
     private int _shots;
     private int _shotsMade;
-    private int _shotPercent;
+    private double _shotPercent;
     private int _threeShots;
     private int _threeShotsMade;
-    private int _threePercent;
+    private double _threePercent;
     private int _freeThrows;
     private int _freeMade;
-    private int _freePercent;
+    private double _freePercent;
 
-    public Basketball(string team, float duration, string location, string playingSurface, int penalties, int pointsConceded, int shots, int shotsMade,  int saves, int threeShots, int threeShotsMade, int freeThrows, int freeMade) : base(team, duration, location, playingSurface, penalties)
+    public Basketball(string team, float duration, string location, string playingSurface, int penalties, int pointsConceded, int shots, int shotsMade, int threeShots, int threeShotsMade, int freeThrows, int freeMade) : base(team, duration, location, playingSurface, penalties)
     {
         _pointsConceded = pointsConceded;
         _shots = shots;
@@ -35,15 +35,37 @@ class Basketball : SportingEvent
 
     public void SetShotPercent()
     {
-        _shotPercent = (_shotsMade/_shots) * 100;
+        if (_shots > 0)
+        {
+            _shotPercent = 100 * _shotsMade / (double)_shots; // Cast to double for floating-point division
+        }
+        else
+        {
+            _shotPercent = 0; // Set to 0 if no shots were taken
+        }
     }
     public void SetThreePercent()
     {
-        _threePercent = (_threeShotsMade/_threeShots) * 100;
+        if (_threeShots > 0)
+        {
+            _threePercent = 100 * _threeShotsMade / (double)_threeShots; 
+        }
+        else
+        {
+            _threePercent = 0; 
+        }
     }
     public void SetFreePercent()
     {
-        _freePercent = (_freeMade/_freeThrows) * 100;
+        _freePercent = 100 * _freeMade / _freeThrows;
+        if (_freeThrows > 0)
+        {
+            _freePercent = 100 * _freeMade / (double)_freeThrows; 
+        }
+        else
+        {
+            _freePercent = 0; 
+        }
     }
 
     
@@ -87,11 +109,11 @@ class Basketball : SportingEvent
 
     
 
-    public override void SaveAttributes(string team) // Save to a text file (updates existing file, otherwise creates new file)
+    public override void SaveAttributes() // Save to a text file (updates existing file, otherwise creates new file)
     {
         string _attributes = $"{_outcome}~{_team}~{_duration}~{_location}~{_playingSurface}~{_penalties}~{_points}~{_pointsConceded}~{_shots}~{_shotsMade}~{_shotPercent}~{_threeShots}~{_threeShotsMade}~{_threePercent}~{_freeThrows}~{_freeMade}~{_freePercent}"; // Serialize attributes
 
-        string fileName = Path.Combine("Stats", $"{team}Info.txt"); // I got this from GitHub Copilot.
+        string fileName = Path.Combine("Stats", $"{_team}Info.txt"); // I got this from GitHub Copilot.
 
         using (StreamWriter outputFile = new StreamWriter(fileName))
         {
@@ -101,10 +123,10 @@ class Basketball : SportingEvent
     }
     
 
-    public override void LoadAttributes(string team)
+    public override void LoadAttributes()
     {
         // Use Path.Combine for better path handling
-        string filename = Path.Combine("Stats", $"{team}Info.txt");
+        string filename = Path.Combine("Stats", $"{_team}Info.txt");
 
         // Check if the file exists before attempting to read
         if (File.Exists(filename))
@@ -135,13 +157,13 @@ class Basketball : SportingEvent
                 _pointsConceded = int.Parse(parts[7]);
                 _shots = int.Parse(parts[8]);
                 _shotsMade = int.Parse(parts[9]);
-                _shotPercent = int.Parse(parts[10]);
+                _shotPercent = double.Parse(parts[10]);
                 _threeShots = int.Parse(parts[11]);
                 _threeShotsMade = int.Parse(parts[12]);
-                _threePercent = int.Parse(parts[13]);
+                _threePercent = double.Parse(parts[13]);
                 _freeThrows = int.Parse(parts[14]);
                 _freeMade = int.Parse(parts[15]);
-                _freePercent = int.Parse(parts[16]);
+                _freePercent = double.Parse(parts[16]);
             }
             catch (IOException ex)
             {

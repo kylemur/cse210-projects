@@ -56,11 +56,11 @@ class Soccer : SportingEvent
     
     
 
-    public override void SaveAttributes(string team) // Save to a text file (updates existing file, otherwise creates new file)
+    public override void SaveAttributes() // Save to a text file (updates existing file, otherwise creates new file)
     {
         string _attributes = $"{_outcome}~{_team}~{_duration}~{_location}~{_playingSurface}~{_penalties}~{_goals}~{_goalsConceded}~{_shots}~{_shotsOnGoal}~{_saves}~{_yellowCards}~{_redCards}"; // Serialize attributes
 
-        string fileName = Path.Combine("Stats", $"{team}Info.txt"); // I got this from GitHub Copilot.
+        string fileName = Path.Combine("Stats", $"{_team}Info.txt"); // I got this from GitHub Copilot.
 
         using (StreamWriter outputFile = new StreamWriter(fileName))
         {
@@ -70,10 +70,10 @@ class Soccer : SportingEvent
     }
     
 
-    public override void LoadAttributes(string team)
+    public override void LoadAttributes()
     {
         // Use Path.Combine for better path handling
-        string filename = Path.Combine("Stats", $"{team}Info.txt");
+        string filename = Path.Combine("Stats", $"{_team}Info.txt");
 
         // Check if the file exists before attempting to read
         if (File.Exists(filename))

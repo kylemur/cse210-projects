@@ -2,11 +2,11 @@ abstract class SportingEvent
 {
     public enum Outcome { Won, Lost, Tied }
     protected Outcome _outcome;
-    protected string _team;
-    protected float _duration;
-    protected string _location;
-    protected string _playingSurface;
-    protected int _penalties;
+    protected string _team = "";
+    protected float _duration = 0;
+    protected string _location = "";
+    protected string _playingSurface = "";
+    protected int _penalties = 0;
 
     public SportingEvent(string team, float duration, string location, string playingSurface, int penalties)
     {
@@ -29,7 +29,7 @@ abstract class SportingEvent
     {
 
     }
-    public abstract void SaveAttributes(string team);
-    public abstract void LoadAttributes(string team);
+    public abstract void SaveAttributes();
+    public abstract void LoadAttributes();
 
 }

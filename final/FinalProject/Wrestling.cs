@@ -9,8 +9,9 @@ class Wrestling : SportingEvent
     private int _fourPoint;
     private int _fivePoint;
     private bool _pin;
+    private bool _wasPinned;
 
-    public Wrestling(string team, float duration, string location, string playingSurface, int penalties, int pointsConceded, int onePoint, int twoPoint, int fourPoint,  int fivePoint, bool pin) : base(team, duration, location, playingSurface, penalties)
+    public Wrestling(string team, float duration, string location, string playingSurface, int penalties, int pointsConceded, int onePoint, int twoPoint, int fourPoint,  int fivePoint, bool pin, bool wasPinned) : base(team, duration, location, playingSurface, penalties)
     {
         _pointsConceded = pointsConceded;
         _onePoint = onePoint;
@@ -18,6 +19,7 @@ class Wrestling : SportingEvent
         _fourPoint = fourPoint;
         _fivePoint = fivePoint;
         _pin = pin;
+        _wasPinned = wasPinned;
         SetPoints();
         SetOutcome();
     }
@@ -28,7 +30,11 @@ class Wrestling : SportingEvent
         {
             _outcome = Outcome.Won;
         }
-        else if (_points > (_pointsConceded + 8))
+        else if (_wasPinned == true)
+        {
+            _outcome = Outcome.Lost;
+        }
+        else if (_points >= (_pointsConceded + 8))
         {
             _outcome = Outcome.Won;
         }
@@ -66,16 +72,17 @@ class Wrestling : SportingEvent
         Console.WriteLine(_fourPoint);
         Console.WriteLine(_fivePoint);
         Console.WriteLine(_pin);
+        Console.WriteLine(_wasPinned);
     }
     
     
     
 
-    public override void SaveAttributes(string team) // Save to a text file (updates existing file, otherwise creates new file)
+    public override void SaveAttributes() // Save to a text file (updates existing file, otherwise creates new file)
     {
         string _attributes = $"{_outcome}~{_team}~{_duration}~{_location}~{_playingSurface}~{_penalties}~{_points}~{_pointsConceded}~{_onePoint}~{_twoPoint}~{_fourPoint}~{_fivePoint}~{_pin}"; // Serialize attributes
 
-        string fileName = Path.Combine("Stats", $"{team}Info.txt"); // I got this from GitHub Copilot.
+        string fileName = Path.Combine("Stats", $"{_team}Info.txt"); // I got this from GitHub Copilot.
 
         using (StreamWriter outputFile = new StreamWriter(fileName))
         {
@@ -85,10 +92,10 @@ class Wrestling : SportingEvent
     }
     
 
-    public override void LoadAttributes(string team)
+    public override void LoadAttributes()
     {
         // Use Path.Combine for better path handling
-        string filename = Path.Combine("Stats", $"{team}Info.txt");
+        string filename = Path.Combine("Stats", $"{_team}Info.txt");
 
         // Check if the file exists before attempting to read
         if (File.Exists(filename))

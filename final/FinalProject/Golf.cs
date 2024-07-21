@@ -17,30 +17,28 @@ class Golf : SportingEvent
     public Golf(string team, float duration, string location, string playingSurface, int penalties) : base(team, duration, location, playingSurface, penalties)
     {
         SetOutcome();
-        SetPars();
-        SetActuals();
-        SetTotalStrokes();
-        SetNames();
+        // SetPars();
+        // SetActuals();
+        // SetTotalStrokes();
+        // SetNames();
     }
 
     public void SetPars()
     {
-        // for (int i=1, i=18, i++)
-        // {
-        //     Console.Write($"Hole {i} par: ");
-        //     int parOne = int.Parse(Console.ReadLine());
-        //     _pars.Add(parOne);
-        // }
+        for (int i=0; i<18; i++)
+        {
+            Console.Write($"Hole {i+1} par: ");
+            _pars.Add(int.Parse(Console.ReadLine()));
+        }
     }
 
     public void SetActuals()
     {
-        // for (int i=1, i=18, i++)
-        // {
-        //     Console.Write($"Hole {i} strokes: ");
-        //     int actualOne = int.Parse(Console.ReadLine());
-        //     _pars.Add(actualOne);
-        // }
+        for (int i=0; i<18; i++)
+        {
+            Console.Write($"Hole {i+1} strokes: ");
+            _actuals.Add(int.Parse(Console.ReadLine()));
+        }
     }
     public void SetTotalStrokes()
     {
@@ -50,26 +48,98 @@ class Golf : SportingEvent
         }
     }
 
-    private void SetNames()
+    public void SetNames()
     {
-        foreach (int a in _actuals)
+        for (int i = 0; i < 18; i++)
         {
-            
-        }
-        foreach (int p in _pars)
-        {
-            // if a == 1 then _ace += 1
-            // if a - p == -4 then _condor += 1
-            // if a - p == -3 then _albatross += 1
-            // if a - p == -2 then _eagle += 1
-            // if a - p == -1 then _birdie += 1
-            // if a - p == 0 then _par += 1
-            // if a - p == 1 then _bogey += 1
-            // if a - p == 2 then _twoBogey += 1
-            // if a - p == 3 then _threeBogey += 1
-            // if a - p >= 4 then _moreBogey += 1
+            if (_actuals[i] == 1)
+            {
+                _ace += 1;
+            }
+            if (_actuals[i] - _pars[i] == -4)
+            {
+                _condor += 1;
+            }
+            else if (_actuals[i] - _pars[i] == -3)
+            {
+                _albatross += 1;
+            }
+            else if (_actuals[i] - _pars[i] == -2)
+            {
+                _eagle += 1;
+            }
+            else if (_actuals[i] - _pars[i] == -1)
+            {
+                _birdie += 1;
+            }
+            else if (_actuals[i] == _pars[i])
+            {
+                _par += 1;
+            }
+            else if (_actuals[i] - _pars[i] == 1)
+            {
+                _bogey += 1;
+            }
+            else if (_actuals[i] - _pars[i] == 2)
+            {
+                _twoBogey += 1;
+            }
+            else if (_actuals[i] - _pars[i] == 3)
+            {
+                _threeBogey += 1;
+            }
+            else if (_actuals[i] - _pars[i] == 4)
+            {
+                _moreBogey += 1;
+            }
         }
     }
+
+    // public void SetNames()
+    // {
+    //     // Reset counts to 0 to avoid accumulating values from multiple calls
+    //     _ace = 0;
+    //     _condor = 0;
+    //     _albatross = 0;
+    //     _eagle = 0;
+    //     _birdie = 0;
+    //     _par = 0; // Assuming there's a field _par to count pars
+    //     _bogey = 0; // Assuming there's a field _bogey to count bogeys
+    //     // Add more fields as necessary for other scores like double bogey, triple bogey, etc.
+
+    //     for (int i = 0; i < 18; i++) // Ensure _actuals.Length is used for flexibility
+    //     {
+    //         int difference = _actuals[i] - _pars[i];
+    //         switch (difference)
+    //         {
+    //             case -4:
+    //                 _condor += 1;
+    //                 break;
+    //             case -3:
+    //                 _albatross += 1;
+    //                 break;
+    //             case -2:
+    //                 _eagle += 1;
+    //                 break;
+    //             case -1:
+    //                 _birdie += 1;
+    //                 break;
+    //             case 0:
+    //                 _par += 1;
+    //                 break;
+    //             case 1:
+    //                 _bogey += 1;
+    //                 break;
+    //             // Add cases for double bogey, triple bogey, etc., if needed
+    //             default:
+    //                 if (_actuals[i] == 1) // Handle ace separately as it doesn't depend on _pars
+    //                 {
+    //                     _ace += 1;
+    //                 }
+    //                 break;
+    //         }
+    //     }
+    // }
 
 
     public override void SetOutcome()
@@ -103,11 +173,11 @@ class Golf : SportingEvent
     
     
 
-    public override void SaveAttributes(string team) // Save to a text file (updates existing file, otherwise creates new file)
+    public override void SaveAttributes() // Save to a text file (updates existing file, otherwise creates new file)
     {
         string _attributes = $"{_outcome}~{_team}~{_duration}~{_location}~{_playingSurface}~{_penalties}~{_totalStrokes}~{_ace}~{_condor}~{_albatross}~{_eagle}~{_birdie}~{_par}~{_bogey}~{_twoBogey}~{_threeBogey}~{_moreBogey}"; // Serialize attributes
 
-        string fileName = Path.Combine("Stats", $"{team}Info.txt"); // I got this from GitHub Copilot.
+        string fileName = Path.Combine("Stats", $"{_team}Info.txt"); // I got this from GitHub Copilot.
 
         using (StreamWriter outputFile = new StreamWriter(fileName))
         {
@@ -117,10 +187,10 @@ class Golf : SportingEvent
     }
     
 
-    public override void LoadAttributes(string team)
+    public override void LoadAttributes()
     {
         // Use Path.Combine for better path handling
-        string filename = Path.Combine("Stats", $"{team}Info.txt");
+        string filename = Path.Combine("Stats", $"{_team}Info.txt");
 
         // Check if the file exists before attempting to read
         if (File.Exists(filename))
