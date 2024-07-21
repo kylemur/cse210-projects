@@ -24,7 +24,17 @@ class Golf : SportingEvent
         // SetNames();
     }
 
-    public void SetPars()
+
+    public void SetPars(List<int> pars)
+    {
+        _pars = pars;
+    }
+    public void SetActuals(List<int> actuals)
+    {
+        _actuals = actuals;
+    }
+
+    public void AddToPars()
     {
         for (int i=0; i<18; i++)
         {
@@ -33,7 +43,7 @@ class Golf : SportingEvent
         }
     }
 
-    public void SetActuals()
+    public void AddToActuals()
     {
         for (int i=0; i<18; i++)
         {
@@ -176,7 +186,10 @@ class Golf : SportingEvent
 
     public override void SaveAttributes() // Save to a text file (updates existing file, otherwise creates new file)
     {
-        string _attributes = $"{_outcome}~{_team}~{_duration}~{_location}~{_playingSurface}~{_penalties}~{_totalStrokes}~{_ace}~{_condor}~{_albatross}~{_eagle}~{_birdie}~{_par}~{_bogey}~{_twoBogey}~{_threeBogey}~{_moreBogey}"; // Serialize attributes
+        string serializedPars = string.Join(",", _pars); // copilot helped me to serialize a list
+        string serializedAct = string.Join(",", _actuals);
+
+        string _attributes = $"{_outcome}~{_team}~{_duration}~{_location}~{_playingSurface}~{_penalties}~{_totalStrokes}~{serializedPars}~{serializedAct}~{_ace}~{_condor}~{_albatross}~{_eagle}~{_birdie}~{_par}~{_bogey}~{_twoBogey}~{_threeBogey}~{_moreBogey}"; // Serialize attributes
 
         string fileName = Path.Combine("Stats", $"{_class}.txt"); // I got this from GitHub Copilot.
 
@@ -219,16 +232,28 @@ class Golf : SportingEvent
                 _playingSurface = parts[4];
                 _penalties = int.Parse(parts[5]);
                 _totalStrokes = int.Parse(parts[6]);
-                _ace = int.Parse(parts[7]);
-                _condor = int.Parse(parts[8]);
-                _albatross = int.Parse(parts[9]);
-                _eagle = int.Parse(parts[10]);
-                _birdie = int.Parse(parts[11]);
-                _par = int.Parse(parts[12]);
-                _bogey = int.Parse(parts[13]);
-                _twoBogey = int.Parse(parts[14]);
-                _threeBogey = int.Parse(parts[15]);
-                _moreBogey = int.Parse(parts[16]);
+
+
+                // _pars = List<int>.Parse(parts[7]);
+                // _actuals = List<int>.Parse(parts[8]);
+
+                // List<int> myList = new List<int> {1, 2, 3, 4, 5};
+                // string serializedList = string.Join(",", myList);
+                // List<int> deserializedList = serializedList.Split(',').Select(int.Parse).ToList();
+
+                _pars = parts[7].Split(',').Select(int.Parse).ToList();
+                _actuals = parts[8].Split(',').Select(int.Parse).ToList();
+
+                _ace = int.Parse(parts[9]);
+                _condor = int.Parse(parts[10]);
+                _albatross = int.Parse(parts[11]);
+                _eagle = int.Parse(parts[12]);
+                _birdie = int.Parse(parts[13]);
+                _par = int.Parse(parts[14]);
+                _bogey = int.Parse(parts[15]);
+                _twoBogey = int.Parse(parts[16]);
+                _threeBogey = int.Parse(parts[17]);
+                _moreBogey = int.Parse(parts[18]);
             }
             catch (IOException ex)
             {

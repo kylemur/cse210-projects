@@ -129,7 +129,8 @@ class Wrestling : SportingEvent
                 _twoPoint = int.Parse(parts[9]);
                 _fourPoint = int.Parse(parts[10]);
                 _fivePoint = int.Parse(parts[11]);
-                _pin = bool.Parse(parts[12]);        
+                _pin = bool.Parse(parts[12]);
+                _wasPinned = bool.Parse(parts[13]);        
             }
             catch (IOException ex)
             {

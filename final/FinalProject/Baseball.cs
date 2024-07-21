@@ -95,24 +95,26 @@ class Baseball : SportingEvent
                 // {_foulBalls}~{_strikes}~{_singles}~{_doubles}~{_triples}~{_homeRuns}
 
 
-                string[] lines = File.ReadAllLines(filename); // Get each line from the file
-            
-                string[] parts = lines[0].Split("~"); // Get points info
+                string[] lines = File.ReadAllLines(filename); // Get each line/event from the file
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    string[] parts = lines[i].Split("~"); // Get info from each line/event
 
-                _outcome = (Outcome)Enum.Parse(typeof(Outcome), parts[0]);
-                _team = parts[1];
-                _duration = float.Parse(parts[2]);
-                _location = parts[3];
-                _playingSurface = parts[4];
-                _penalties = int.Parse(parts[5]);
-                _runs = int.Parse(parts[6]);
-                _runsConceded = int.Parse(parts[7]);
-                _foulBalls = int.Parse(parts[8]);
-                _strikes = int.Parse(parts[9]);
-                _singles = int.Parse(parts[10]);
-                _doubles = int.Parse(parts[11]);
-                _triples = int.Parse(parts[12]);
-                _homeRuns = int.Parse(parts[13]);
+                    _outcome = (Outcome)Enum.Parse(typeof(Outcome), parts[0]);
+                    _team = parts[1];
+                    _duration = float.Parse(parts[2]);
+                    _location = parts[3];
+                    _playingSurface = parts[4];
+                    _penalties = int.Parse(parts[5]);
+                    _runs = int.Parse(parts[6]);
+                    _runsConceded = int.Parse(parts[7]);
+                    _foulBalls = int.Parse(parts[8]);
+                    _strikes = int.Parse(parts[9]);
+                    _singles = int.Parse(parts[10]);
+                    _doubles = int.Parse(parts[11]);
+                    _triples = int.Parse(parts[12]);
+                    _homeRuns = int.Parse(parts[13]);
+                }
             }
             catch (IOException ex)
             {

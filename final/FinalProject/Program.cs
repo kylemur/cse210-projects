@@ -5,14 +5,10 @@ class Program
     static void Main(string[] args)
     {
         Attributes attributesAll = new();
-        attributesAll.Display("All");
 
         string menuOption = "";
         while(menuOption != "3")
         {
-            // Attributes attributesAll = new();
-            // attributesAll.Display("All");
-
             Console.WriteLine();
             Console.WriteLine("Menu ");
             Console.WriteLine(" 1. Record a Sporting Event");
@@ -160,8 +156,8 @@ class Program
                     int penalties = int.Parse(Console.ReadLine());
                     
                     Golf golf1 = new Golf(team, duration, location, playingSurface, penalties);
-                    golf1.SetPars();
-                    golf1.SetActuals();
+                    golf1.AddToPars();
+                    golf1.AddToActuals();
                     golf1.SetNames();
                     golf1.SetTotalStrokes();
                     Console.WriteLine();
