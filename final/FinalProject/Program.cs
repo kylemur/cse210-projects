@@ -294,11 +294,13 @@ class Program
                 }
                 else if (dataOption == "2") // See Leaderboard
                 {
-                    
+                    Console.WriteLine("Teams that have won: ");
+                    attributesAll.Winners();
                 }
                 else if (dataOption == "3") // Other Calculations
                 {
-
+                    int totalEvents = attributesAll.TotalAttributes();
+                    Console.WriteLine($"Total Recorded Sporting Events: {totalEvents}");
                 }
                 else
                 {

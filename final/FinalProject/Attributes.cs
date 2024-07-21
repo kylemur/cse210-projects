@@ -27,7 +27,23 @@ class Attributes
 
 
 
+    public int TotalAttributes()
+    {
+        return _attributes.Count();
+    }
 
+    public void Winners()
+    {
+        // int wins = 0;
+        foreach (SportingEvent sportingE in _attributes)
+        {
+            if (sportingE.GetOutcome() == SportingEvent.Outcome.Won)
+            {
+                Console.WriteLine(sportingE.GetTeam());
+            }
+        }
+        // return bestTeam;
+    }
 
     public void AddAttributes(SportingEvent objectName)
     {
