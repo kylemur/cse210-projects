@@ -2,17 +2,18 @@ using System.Net.NetworkInformation;
 
 class Wrestling : SportingEvent
 {
-    private int _points;
-    private int _pointsConceded;
-    private int _onePoint;
-    private int _twoPoint;
-    private int _fourPoint;
-    private int _fivePoint;
-    private bool _pin;
-    private bool _wasPinned;
+    private int _points = 0;
+    private int _pointsConceded = 0;
+    private int _onePoint = 0;
+    private int _twoPoint = 0;
+    private int _fourPoint = 0;
+    private int _fivePoint = 0;
+    private bool _pin = false;
+    private bool _wasPinned = false;
 
-    public Wrestling(string team, float duration, string location, string playingSurface, int penalties, int pointsConceded, int onePoint, int twoPoint, int fourPoint,  int fivePoint, bool pin, bool wasPinned) : base(team, duration, location, playingSurface, penalties)
+    public Wrestling(string team="", float duration=0.0f, string location="", string playingSurface="", int penalties=0, int pointsConceded=0, int onePoint=0, int twoPoint=0, int fourPoint=0,  int fivePoint=0, bool pin=false, bool wasPinned=false) : base(team, duration, location, playingSurface, penalties)
     {
+        _class = "Wrestling";
         _pointsConceded = pointsConceded;
         _onePoint = onePoint;
         _twoPoint = twoPoint;
@@ -59,20 +60,20 @@ class Wrestling : SportingEvent
 
     public override void DisplayAttributes()
     {
-        Console.WriteLine(_outcome);
-        Console.WriteLine(_team);
-        Console.WriteLine(_duration);
-        Console.WriteLine(_location);
-        Console.WriteLine(_playingSurface);
-        Console.WriteLine(_penalties);
-        Console.WriteLine(_points);
-        Console.WriteLine(_pointsConceded);
-        Console.WriteLine(_onePoint);
-        Console.WriteLine(_twoPoint);
-        Console.WriteLine(_fourPoint);
-        Console.WriteLine(_fivePoint);
-        Console.WriteLine(_pin);
-        Console.WriteLine(_wasPinned);
+        Console.WriteLine($"outcome: {_outcome}");
+        Console.WriteLine($"name: {_team}");
+        Console.WriteLine($"duration: {_duration} minutes");
+        Console.WriteLine($"location: {_location}");
+        Console.WriteLine($"surface type: {_playingSurface}");
+        Console.WriteLine($"penalties: {_penalties}");
+        Console.WriteLine($"points: {_points}");
+        Console.WriteLine($"points conceded: {_pointsConceded}");
+        Console.WriteLine($"one point moves: {_onePoint}");
+        Console.WriteLine($"two point moves: {_twoPoint}");
+        Console.WriteLine($"four point moves: {_fourPoint}");
+        Console.WriteLine($"five point moves: {_fivePoint}");
+        Console.WriteLine($"pin: {_pin}");
+        Console.WriteLine($"was pinned: {_wasPinned}");
     }
     
     
@@ -82,9 +83,9 @@ class Wrestling : SportingEvent
     {
         string _attributes = $"{_outcome}~{_team}~{_duration}~{_location}~{_playingSurface}~{_penalties}~{_points}~{_pointsConceded}~{_onePoint}~{_twoPoint}~{_fourPoint}~{_fivePoint}~{_pin}"; // Serialize attributes
 
-        string fileName = Path.Combine("Stats", $"{_team}Info.txt"); // I got this from GitHub Copilot.
+        string fileName = Path.Combine("Stats", $"{_class}.txt"); // I got this from GitHub Copilot.
 
-        using (StreamWriter outputFile = new StreamWriter(fileName))
+        using (StreamWriter outputFile = new StreamWriter(fileName, true))
         {
             // You can add text to the file with the WriteLine method
             outputFile.WriteLine(_attributes);
@@ -92,10 +93,10 @@ class Wrestling : SportingEvent
     }
     
 
-    public override void LoadAttributes()
+    public override void LoadAttributes(string filename)
     {
         // Use Path.Combine for better path handling
-        string filename = Path.Combine("Stats", $"{_team}Info.txt");
+        // string filename = Path.Combine("Stats", $"{_team}Info.txt");
 
         // Check if the file exists before attempting to read
         if (File.Exists(filename))

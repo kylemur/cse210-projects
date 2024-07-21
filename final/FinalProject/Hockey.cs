@@ -1,14 +1,15 @@
 class Hockey : SportingEvent
 {
-    private int _goals;
-    private int _goalsConceded;
-    private int _shots;
-    private int _shotsOnGoal;
-    private int _saves;
-    private int _penBoxMins;
+    private int _goals = 0;
+    private int _goalsConceded = 0;
+    private int _shots = 0;
+    private int _shotsOnGoal = 0;
+    private int _saves = 0;
+    private int _penBoxMins = 0;
 
-    public Hockey(string team, float duration, string location, string playingSurface, int penalties, int goals, int goalsConceded, int shots, int shotsOnGoal,  int saves, int penBoxMins) : base(team, duration, location, playingSurface, penalties)
+    public Hockey(string team = "", float duration = 0.0f, string location = "", string playingSurface = "", int penalties = 0, int goals = 0, int goalsConceded = 0, int shots = 0, int shotsOnGoal = 0, int saves = 0, int penBoxMins = 0) : base(team, duration, location, playingSurface, penalties)
     {
+        _class = "Hockey";
         _goals = goals;
         _goalsConceded = goalsConceded;
         _shots = shots;
@@ -36,18 +37,18 @@ class Hockey : SportingEvent
 
     public override void DisplayAttributes()
     {
-        Console.WriteLine(_outcome);
-        Console.WriteLine(_team);
-        Console.WriteLine(_duration);
-        Console.WriteLine(_location);
-        Console.WriteLine(_playingSurface);
-        Console.WriteLine(_penalties);
-        Console.WriteLine(_goals);
-        Console.WriteLine(_goalsConceded);
-        Console.WriteLine(_shots);
-        Console.WriteLine(_shotsOnGoal);
-        Console.WriteLine(_saves);
-        Console.WriteLine(_penBoxMins);
+        Console.WriteLine($"outcome: {_outcome}");
+        Console.WriteLine($"team: {_team}");
+        Console.WriteLine($"duration: {_duration} minutes");
+        Console.WriteLine($"location: {_location}");
+        Console.WriteLine($"field surface: {_playingSurface}");
+        Console.WriteLine($"number of fouls: {_penalties}");
+        Console.WriteLine($"goals: {_goals}");
+        Console.WriteLine($"goals conceded: {_goalsConceded}");
+        Console.WriteLine($"shots: {_shots}");
+        Console.WriteLine($"shots on goal: {_shotsOnGoal}");
+        Console.WriteLine($"saves: {_saves}");
+        Console.WriteLine($"minutes in penalty box: {_penBoxMins}");
     }
     
     
@@ -57,9 +58,9 @@ class Hockey : SportingEvent
     {
         string _attributes = $"{_goals}~{_goalsConceded}~{_shots}~{_shotsOnGoal}~{_saves}~{_penBoxMins}"; // Serialize attributes
 
-        string fileName = Path.Combine("Stats", $"{_team}Info.txt"); // I got this from GitHub Copilot.
+        string fileName = Path.Combine("Stats", $"{_class}.txt"); // I got this from GitHub Copilot.
 
-        using (StreamWriter outputFile = new StreamWriter(fileName))
+        using (StreamWriter outputFile = new StreamWriter(fileName, true))
         {
             // You can add text to the file with the WriteLine method
             outputFile.WriteLine(_attributes);
@@ -67,10 +68,10 @@ class Hockey : SportingEvent
     }
     
 
-    public override void LoadAttributes()
+    public override void LoadAttributes(string filename)
     {
         // Use Path.Combine for better path handling
-        string filename = Path.Combine("Stats", $"{_team}Info.txt");
+        // string filename = Path.Combine("Stats", $"{_team}Info.txt");
 
         // Check if the file exists before attempting to read
         if (File.Exists(filename))

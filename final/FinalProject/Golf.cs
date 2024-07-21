@@ -1,21 +1,22 @@
 class Golf : SportingEvent
 {
-    private int _totalStrokes;
+    private int _totalStrokes = 0;
     private List<int> _pars = new();
     private List<int> _actuals = new();
-    private int _ace;
-    private int _condor;
-    private int _albatross;
-    private int _eagle;
-    private int _birdie;
-    private int _par;
-    private int _bogey;
-    private int _twoBogey;
-    private int _threeBogey;
-    private int _moreBogey;
+    private int _ace = 0;
+    private int _condor = 0;
+    private int _albatross = 0;
+    private int _eagle = 0;
+    private int _birdie = 0;
+    private int _par = 0;
+    private int _bogey = 0;
+    private int _twoBogey = 0;
+    private int _threeBogey = 0;
+    private int _moreBogey = 0;
 
-    public Golf(string team, float duration, string location, string playingSurface, int penalties) : base(team, duration, location, playingSurface, penalties)
+    public Golf(string team="", float duration=0.0f, string location="", string playingSurface="", int penalties=0) : base(team, duration, location, playingSurface, penalties)
     {
+        _class = "Golf";
         SetOutcome();
         // SetPars();
         // SetActuals();
@@ -151,23 +152,23 @@ class Golf : SportingEvent
     
     public override void DisplayAttributes()
     {
-        Console.WriteLine(_outcome);
-        Console.WriteLine(_team);
-        Console.WriteLine(_duration);
-        Console.WriteLine(_location);
-        Console.WriteLine(_playingSurface);
-        Console.WriteLine(_penalties);
-        Console.WriteLine(_totalStrokes);
-        Console.WriteLine(_ace);
-        Console.WriteLine(_condor);
-        Console.WriteLine(_albatross);
-        Console.WriteLine(_eagle);
-        Console.WriteLine(_birdie);
-        Console.WriteLine(_par);
-        Console.WriteLine(_bogey);
-        Console.WriteLine(_twoBogey);
-        Console.WriteLine(_threeBogey);
-        Console.WriteLine(_moreBogey);
+        Console.WriteLine($"outcome: {_outcome}");
+        Console.WriteLine($"name: {_team}");
+        Console.WriteLine($"duration: {_duration} holes");
+        Console.WriteLine($"location: {_location}");
+        Console.WriteLine($"course type: {_playingSurface}");
+        Console.WriteLine($"penalty strokes: {_penalties}");
+        Console.WriteLine($"total strokes: {_totalStrokes}");
+        Console.WriteLine($"holes-in-one: {_ace}");
+        Console.WriteLine($"condors: {_condor}");
+        Console.WriteLine($"albatrosses: {_albatross}");
+        Console.WriteLine($"eagles: {_eagle}");
+        Console.WriteLine($"birdies: {_birdie}");
+        Console.WriteLine($"pars: {_par}");
+        Console.WriteLine($"bogeys: {_bogey}");
+        Console.WriteLine($"double bogeys: {_twoBogey}");
+        Console.WriteLine($"triple bogeys: {_threeBogey}");
+        Console.WriteLine($"quatruple+ bogeys: {_moreBogey}");
     }
     
     
@@ -177,9 +178,9 @@ class Golf : SportingEvent
     {
         string _attributes = $"{_outcome}~{_team}~{_duration}~{_location}~{_playingSurface}~{_penalties}~{_totalStrokes}~{_ace}~{_condor}~{_albatross}~{_eagle}~{_birdie}~{_par}~{_bogey}~{_twoBogey}~{_threeBogey}~{_moreBogey}"; // Serialize attributes
 
-        string fileName = Path.Combine("Stats", $"{_team}Info.txt"); // I got this from GitHub Copilot.
+        string fileName = Path.Combine("Stats", $"{_class}.txt"); // I got this from GitHub Copilot.
 
-        using (StreamWriter outputFile = new StreamWriter(fileName))
+        using (StreamWriter outputFile = new StreamWriter(fileName, true))
         {
             // You can add text to the file with the WriteLine method
             outputFile.WriteLine(_attributes);
@@ -187,10 +188,10 @@ class Golf : SportingEvent
     }
     
 
-    public override void LoadAttributes()
+    public override void LoadAttributes(string filename)
     {
         // Use Path.Combine for better path handling
-        string filename = Path.Combine("Stats", $"{_team}Info.txt");
+        // string filename = Path.Combine("Stats", $"{_team}Info.txt");
 
         // Check if the file exists before attempting to read
         if (File.Exists(filename))
