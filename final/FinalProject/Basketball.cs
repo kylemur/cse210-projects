@@ -96,7 +96,6 @@ class Basketball : SportingEvent
         Console.WriteLine($"free throw shooting %{_freePercent}%");
     }
 
-    
 
     public override void SaveAttributes() // Save to a text file (updates existing file, otherwise creates new file)
     {
@@ -110,60 +109,5 @@ class Basketball : SportingEvent
             outputFile.WriteLine(_attributes);
         }
     }
-    
-
-    // public override void LoadAttributes(string filename)
-    // {
-    //     // Use Path.Combine for better path handling
-    //     // string filename = Path.Combine("Stats", $"{_team}Info.txt");
-
-    //     // Check if the file exists before attempting to read
-    //     if (File.Exists(filename))
-    //     {
-    //         try
-    //         {
-    //             // _pointsAttributes = "0~0~0~0"; // Reset values before loading from a file
-    //             // _totalPoints = 0;
-    //             // _simplePoints = 0;
-    //             // _eternalPoints = 0;
-    //             // _checklistPoints = 0;
-
-    //             // _goalsList.Clear();
-    //             // {_points}~{_pointsConceded}~{_shots}~{_shotsMade}~{_shotPercent}~{_threeShots}~{_threeShotsMade}~{_threePercent}~{_freeThrows}~{_freeMade}~{_freePercent
-
-
-    //             string[] lines = File.ReadAllLines(filename); // Get each line from the file
-            
-    //             string[] parts = lines[0].Split("~"); // Get points info
-
-    //             _outcome = (Outcome)Enum.Parse(typeof(Outcome), parts[0]);
-    //             _team = parts[1];
-    //             _duration = float.Parse(parts[2]);
-    //             _location = parts[3];
-    //             _playingSurface = parts[4];
-    //             _penalties = int.Parse(parts[5]);
-    //             _points = int.Parse(parts[6]);
-    //             _pointsConceded = int.Parse(parts[7]);
-    //             _shots = int.Parse(parts[8]);
-    //             _shotsMade = int.Parse(parts[9]);
-    //             _shotPercent = double.Parse(parts[10]);
-    //             _threeShots = int.Parse(parts[11]);
-    //             _threeShotsMade = int.Parse(parts[12]);
-    //             _threePercent = double.Parse(parts[13]);
-    //             _freeThrows = int.Parse(parts[14]);
-    //             _freeMade = int.Parse(parts[15]);
-    //             _freePercent = double.Parse(parts[16]);
-    //         }
-    //         catch (IOException ex)
-    //         {
-    //             // Handle potential IO exceptions (e.g., file is being used by another process)
-    //             Console.WriteLine($"An error occurred while reading the file: {ex.Message}");
-    //         }
-    //     }
-    //     else
-    //     {
-    //         Console.WriteLine("File does not exist.");
-    //     }
-    // }
 
 }

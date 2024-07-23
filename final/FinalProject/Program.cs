@@ -10,10 +10,12 @@ class Program
         while(menuOption != "3")
         {
             Console.WriteLine();
+            Console.WriteLine("----------------------------");
             Console.WriteLine("Menu ");
             Console.WriteLine(" 1. Record a Sporting Event");
             Console.WriteLine(" 2. See Data");
             Console.WriteLine(" 3. Exit");
+            Console.WriteLine("----------------------------");
             Console.Write("Select a choice from the menu: ");
             menuOption = Console.ReadLine();
             Console.WriteLine();
@@ -174,7 +176,7 @@ class Program
                     float duration = float.Parse(Console.ReadLine());
                     Console.Write("location: ");
                     string location = Console.ReadLine();
-                    Console.Write("field surface: ");
+                    Console.Write("surface material: ");
                     string playingSurface = Console.ReadLine();
                     Console.Write("fouls: ");
                     int penalties = int.Parse(Console.ReadLine());
@@ -271,10 +273,12 @@ class Program
             else if (menuOption == "2") // See Data
             {
                 Console.WriteLine();
+                Console.WriteLine("-*-*-*-*-*-*-*-*-*-*-*-*-*-");
                 Console.WriteLine("Data Menu");
                 Console.WriteLine(" 1. Attributes");
                 Console.WriteLine(" 2. Leaderboard");
                 Console.WriteLine(" 3. Other Calculations");
+                Console.WriteLine("-*-*-*-*-*-*-*-*-*-*-*-*-*-");
                 Console.Write("Select a choice from the menu: ");
                 string dataOption = Console.ReadLine();
                 Console.WriteLine();
@@ -295,9 +299,7 @@ class Program
                 }
                 else if (dataOption == "2") // See Leaderboard
                 {
-                    Console.WriteLine($"Leaderboard\n\n{attributesAll.GetWinnersByFrequency()} ");
-                    // Console.WriteLine("Teams/players who have won: ");
-                    // attributesAll.Winners();
+                    Console.WriteLine($"Leaderboard\n*************************\n{attributesAll.GetWinnersByFrequency()} ");
                 }
                 else if (dataOption == "3") // Other Calculations
                 {
