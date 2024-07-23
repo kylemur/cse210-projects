@@ -36,6 +36,6 @@ abstract class SportingEvent
 
     public abstract void DisplayAttributes();
     public abstract void SaveAttributes();
-    public abstract void LoadAttributes(string filename);
+    // public abstract void LoadAttributes(string filename);
 
 }

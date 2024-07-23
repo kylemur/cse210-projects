@@ -71,55 +71,55 @@ class Soccer : SportingEvent
     }
     
 
-    public override void LoadAttributes(string filename)
-    {
-        // Use Path.Combine for better path handling
-        // string filename = Path.Combine("Stats", $"{_team}Info.txt");
+    // public override void LoadAttributes(string filename)
+    // {
+    //     // Use Path.Combine for better path handling
+    //     // string filename = Path.Combine("Stats", $"{_team}Info.txt");
 
-        // Check if the file exists before attempting to read
-        if (File.Exists(filename))
-        {
-            try
-            {
-                // _pointsAttributes = "0~0~0~0"; // Reset values before loading from a file
-                // _totalPoints = 0;
-                // _simplePoints = 0;
-                // _eternalPoints = 0;
-                // _checklistPoints = 0;
+    //     // Check if the file exists before attempting to read
+    //     if (File.Exists(filename))
+    //     {
+    //         try
+    //         {
+    //             // _pointsAttributes = "0~0~0~0"; // Reset values before loading from a file
+    //             // _totalPoints = 0;
+    //             // _simplePoints = 0;
+    //             // _eternalPoints = 0;
+    //             // _checklistPoints = 0;
 
-                // _goalsList.Clear();
-                // string team, float duration, string location, string playingSurface, int penalties, int goals, int goalsConceded, int shots, int shotsOnGoal,  int saves, int yellowCards, int redcards
+    //             // _goalsList.Clear();
+    //             // string team, float duration, string location, string playingSurface, int penalties, int goals, int goalsConceded, int shots, int shotsOnGoal,  int saves, int yellowCards, int redcards
 
 
-                string[] lines = File.ReadAllLines(filename); // Get each line from the file
+    //             string[] lines = File.ReadAllLines(filename); // Get each line from the file
             
-                string[] parts = lines[0].Split("~"); // Get points info
+    //             string[] parts = lines[0].Split("~"); // Get points info
 
-                _outcome = (Outcome)Enum.Parse(typeof(Outcome), parts[0]);
-                _team = parts[1];
-                _duration = float.Parse(parts[2]);
-                _location = parts[3];
-                _playingSurface = parts[4];
-                _penalties = int.Parse(parts[5]);
-                _goals = int.Parse(parts[6]);
-                _goalsConceded = int.Parse(parts[7]);
-                _shots = int.Parse(parts[8]);
-                _shotsOnGoal = int.Parse(parts[9]);
-                _saves = int.Parse(parts[10]);
-                _yellowCards = int.Parse(parts[11]);
-                _redCards = int.Parse(parts[12]);        
-            }
-            catch (IOException ex)
-            {
-                // Handle potential IO exceptions (e.g., file is being used by another process)
-                Console.WriteLine($"An error occurred while reading the file: {ex.Message}");
-            }
-        }
-        else
-        {
-            Console.WriteLine("File does not exist.");
-        }
-    }
+    //             _outcome = (Outcome)Enum.Parse(typeof(Outcome), parts[0]);
+    //             _team = parts[1];
+    //             _duration = float.Parse(parts[2]);
+    //             _location = parts[3];
+    //             _playingSurface = parts[4];
+    //             _penalties = int.Parse(parts[5]);
+    //             _goals = int.Parse(parts[6]);
+    //             _goalsConceded = int.Parse(parts[7]);
+    //             _shots = int.Parse(parts[8]);
+    //             _shotsOnGoal = int.Parse(parts[9]);
+    //             _saves = int.Parse(parts[10]);
+    //             _yellowCards = int.Parse(parts[11]);
+    //             _redCards = int.Parse(parts[12]);        
+    //         }
+    //         catch (IOException ex)
+    //         {
+    //             // Handle potential IO exceptions (e.g., file is being used by another process)
+    //             Console.WriteLine($"An error occurred while reading the file: {ex.Message}");
+    //         }
+    //     }
+    //     else
+    //     {
+    //         Console.WriteLine("File does not exist.");
+    //     }
+    // }
 
 
                 // else if (goalsParts[0] == "ChecklistGoal") // Get goal type and create a new ChecklistGoal object with the info

@@ -75,57 +75,57 @@ class Baseball : SportingEvent
     }
     
 
-    public override void LoadAttributes(string filename)
-    {
-        // Use Path.Combine for better path handling
-        //     string filename = Path.Combine("Stats", $"{_team}Info.txt");
+    // public override void LoadAttributes(string filename)
+    // {
+    //     // Use Path.Combine for better path handling
+    //     //     string filename = Path.Combine("Stats", $"{_team}Info.txt");
 
-        // Check if the file exists before attempting to read
-        if (File.Exists(filename))
-        {
-            try
-            {
-                // _pointsAttributes = "0~0~0~0"; // Reset values before loading from a file
-                // _totalPoints = 0;
-                // _simplePoints = 0;
-                // _eternalPoints = 0;
-                // _checklistPoints = 0;
+    //     // Check if the file exists before attempting to read
+    //     if (File.Exists(filename))
+    //     {
+    //         try
+    //         {
+    //             // _pointsAttributes = "0~0~0~0"; // Reset values before loading from a file
+    //             // _totalPoints = 0;
+    //             // _simplePoints = 0;
+    //             // _eternalPoints = 0;
+    //             // _checklistPoints = 0;
 
-                // _goalsList.Clear();
-                // {_foulBalls}~{_strikes}~{_singles}~{_doubles}~{_triples}~{_homeRuns}
+    //             // _goalsList.Clear();
+    //             // {_foulBalls}~{_strikes}~{_singles}~{_doubles}~{_triples}~{_homeRuns}
 
 
-                string[] lines = File.ReadAllLines(filename); // Get each line/event from the file
-                for (int i = 0; i < lines.Length; i++)
-                {
-                    string[] parts = lines[i].Split("~"); // Get info from each line/event
+    //             string[] lines = File.ReadAllLines(filename); // Get each line/event from the file
+    //             for (int i = 0; i < lines.Length; i++)
+    //             {
+    //                 string[] parts = lines[i].Split("~"); // Get info from each line/event
 
-                    _outcome = (Outcome)Enum.Parse(typeof(Outcome), parts[0]);
-                    _team = parts[1];
-                    _duration = float.Parse(parts[2]);
-                    _location = parts[3];
-                    _playingSurface = parts[4];
-                    _penalties = int.Parse(parts[5]);
-                    _runs = int.Parse(parts[6]);
-                    _runsConceded = int.Parse(parts[7]);
-                    _foulBalls = int.Parse(parts[8]);
-                    _strikes = int.Parse(parts[9]);
-                    _singles = int.Parse(parts[10]);
-                    _doubles = int.Parse(parts[11]);
-                    _triples = int.Parse(parts[12]);
-                    _homeRuns = int.Parse(parts[13]);
-                }
-            }
-            catch (IOException ex)
-            {
-                // Handle potential IO exceptions (e.g., file is being used by another process)
-                Console.WriteLine($"An error occurred while reading the file: {ex.Message}");
-            }
-        }
-        else
-        {
-            Console.WriteLine("File does not exist.");
-        }
-    }
+    //                 _outcome = (Outcome)Enum.Parse(typeof(Outcome), parts[0]);
+    //                 _team = parts[1];
+    //                 _duration = float.Parse(parts[2]);
+    //                 _location = parts[3];
+    //                 _playingSurface = parts[4];
+    //                 _penalties = int.Parse(parts[5]);
+    //                 _runs = int.Parse(parts[6]);
+    //                 _runsConceded = int.Parse(parts[7]);
+    //                 _foulBalls = int.Parse(parts[8]);
+    //                 _strikes = int.Parse(parts[9]);
+    //                 _singles = int.Parse(parts[10]);
+    //                 _doubles = int.Parse(parts[11]);
+    //                 _triples = int.Parse(parts[12]);
+    //                 _homeRuns = int.Parse(parts[13]);
+    //             }
+    //         }
+    //         catch (IOException ex)
+    //         {
+    //             // Handle potential IO exceptions (e.g., file is being used by another process)
+    //             Console.WriteLine($"An error occurred while reading the file: {ex.Message}");
+    //         }
+    //     }
+    //     else
+    //     {
+    //         Console.WriteLine("File does not exist.");
+    //     }
+    // }
 
 }

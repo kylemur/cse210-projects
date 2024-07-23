@@ -156,6 +156,7 @@ class Program
                     int penalties = int.Parse(Console.ReadLine());
                     
                     Golf golf1 = new Golf(team, duration, location, playingSurface, penalties);
+                    golf1.SetOutcome();
                     golf1.AddToPars();
                     golf1.AddToActuals();
                     golf1.SetNames();
@@ -294,8 +295,9 @@ class Program
                 }
                 else if (dataOption == "2") // See Leaderboard
                 {
-                    Console.WriteLine("Teams that have won: ");
-                    attributesAll.Winners();
+                    Console.WriteLine($"Leaderboard\n\n{attributesAll.GetWinnersByFrequency()} ");
+                    // Console.WriteLine("Teams/players who have won: ");
+                    // attributesAll.Winners();
                 }
                 else if (dataOption == "3") // Other Calculations
                 {

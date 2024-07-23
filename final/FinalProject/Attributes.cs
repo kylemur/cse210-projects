@@ -1,11 +1,14 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 
 class Attributes
 {
     private List<SportingEvent> _attributes = new List<SportingEvent>();
+    private List<SportingEvent> _winners = new List<SportingEvent>();
+    private List<string> _winTeams = new();
     private List<string> files =
         [
             "Baseball.txt",
@@ -264,8 +267,11 @@ class Attributes
                         else if (fileNamePath.Contains("Golf")) 
                         {
                             Golf golf = new Golf(parts[1], float.Parse(parts[2]), parts[3], parts[4], int.Parse(parts[5]));
-                            golf.SetPars(parts[7].Split(',').Select(int.Parse).ToList()); // copilot helped me to deserialize a list
-                            golf.SetActuals(parts[8].Split(',').Select(int.Parse).ToList());
+                            golf.PutOutcome(parts[0]);
+                            golf.SetPars(parts[6]); // copilot helped me to deserialize a list
+                            golf.SetActuals(parts[7]);
+                            golf.SetTotalStrokes();
+                            golf.SetNames();
                             _attributes.Add(golf);
                         }
                         else if (fileNamePath.Contains("Hockey")) 
@@ -298,6 +304,134 @@ class Attributes
         }
     }
 
-    public void Leaderboard()
-    {}
+    // public void Leaderboard()
+    // {
+    //     // int wins = 0;
+    //     foreach (SportingEvent sportingE in _attributes)
+    //     {
+    //         if (sportingE.GetOutcome() == SportingEvent.Outcome.Won)
+    //         {
+    //             _winners.Add(sportingE);
+    //         }
+    //     }
+    //     // return bestTeam;
+    // }
+
+    // public string GetModeWinner()
+    // {
+    //     foreach (SportingEvent sportingE in _attributes)
+    //     {
+    //         if (sportingE.GetOutcome() == SportingEvent.Outcome.Won)
+    //         {
+    //             _winners.Add(sportingE);
+    //         }
+    //     }
+
+    //     if (_winners.Count == 0)
+    //     {
+    //         return "--There are no instances of a win.--";
+    //         // return null; // or throw an exception depending on your use case
+    //     }
+
+    //     Dictionary<SportingEvent, int> countMap = new Dictionary<SportingEvent, int>(); // copilot helped me get the mode from _winners
+    //     foreach (SportingEvent winner in _winners)
+    //     {
+    //         if (countMap.ContainsKey(winner))
+    //         {
+    //             countMap[winner]++;
+    //         }
+    //         else
+    //         {
+    //             countMap[winner] = 1;
+    //         }
+    //     }
+
+    //     int maxCount = countMap.Values.Max();
+    //     SportingEvent modeWinner = countMap.FirstOrDefault(x => x.Value == maxCount).Key;
+
+    //     return $"{modeWinner.GetTeam()} with {maxCount} wins";
+    //     // return modeWinner;
+    // }
+
+    // public string GetWinnersByFrequency()
+    // {
+    //     _winners.Clear();
+    //     foreach (SportingEvent sportingE in _attributes)
+    //     {
+    //         if (sportingE.GetOutcome() == SportingEvent.Outcome.Won)
+    //         {
+    //             _winners.Add(sportingE);
+    //         }
+    //     }
+
+    //     if (_winners.Count == 0)
+    //     {
+    //         return "--There are no instances of a win.--";
+    //     }
+
+    //     Dictionary<SportingEvent, int> countMap = new Dictionary<SportingEvent, int>();
+    //     foreach (SportingEvent winner in _winners)
+    //     {
+    //         if (countMap.ContainsKey(winner))
+    //         {
+    //             countMap[winner]++;
+    //         }
+    //         else
+    //         {
+    //             countMap[winner] = 1;
+    //         }
+    //     }
+
+    //     // Sort the dictionary by value (win count) in descending order
+    //     var sortedWinners = countMap.OrderByDescending(x => x.Value);
+
+    //     StringBuilder result = new StringBuilder();
+    //     foreach (var winner in sortedWinners)
+    //     {
+    //         result.AppendLine($"{winner.Key.GetTeam()} ({winner.Value})");
+    //     }
+
+    //     return result.ToString();
+    // }
+
+    public string GetWinnersByFrequency()
+    {
+        _winTeams.Clear();
+        foreach (SportingEvent sportingE in _attributes)
+        {
+            if (sportingE.GetOutcome() == SportingEvent.Outcome.Won)
+            {
+                _winTeams.Add(sportingE.GetTeam());
+            }
+        }
+
+        if (_winTeams.Count == 0)
+        {
+            return "--There are no instances of a win.--";
+        }
+
+        Dictionary<string, int> countMap = new Dictionary<string, int>();
+        foreach (string winTeam in _winTeams)
+        {
+            if (countMap.ContainsKey(winTeam))
+            {
+                countMap[winTeam]++;
+            }
+            else
+            {
+                countMap[winTeam] = 1;
+            }
+        }
+
+        // Sort the dictionary by value (win count) in descending order
+        var sortedWinners = countMap.OrderByDescending(x => x.Value);
+
+        StringBuilder result = new StringBuilder();
+        foreach (var winTeam in sortedWinners)
+        {
+            result.AppendLine($"{winTeam.Key} ({winTeam.Value})");
+        }
+
+        return result.ToString();
+    }
 }
