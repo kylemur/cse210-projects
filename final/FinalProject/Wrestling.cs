@@ -25,6 +25,11 @@ class Wrestling : SportingEvent
         SetOutcome();
     }
 
+    public override int GetScore()
+    {
+        return _points;
+    }
+
     public override void SetOutcome()
     {
         if (_pin == true)

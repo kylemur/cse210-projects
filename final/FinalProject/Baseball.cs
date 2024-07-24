@@ -23,6 +23,11 @@ class Baseball : SportingEvent
         SetOutcome();
     }
 
+    public override int GetScore()
+    {
+        return _runs;
+    }
+
 
     public override void SetOutcome()
     {

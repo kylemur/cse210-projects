@@ -29,6 +29,11 @@ class Football : SportingEvent
         SetOutcome();
     }
 
+    public override int GetScore()
+    {
+        return _points;
+    }
+
     private void SetPoints()
     {
         _points = (_touchdowns*6) + _PATs + (_twoPt*2) + (_fieldGoals*3) + _otherPoints;

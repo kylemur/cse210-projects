@@ -19,6 +19,11 @@ class Hockey : SportingEvent
         SetOutcome();
     }
 
+    public override int GetScore()
+    {
+        return _goals;
+    }
+
     public override void SetOutcome()
     {
         if (_goals > _goalsConceded)

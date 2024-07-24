@@ -240,4 +240,89 @@ class Attributes
 
         return result.ToString();
     }
+
+
+    public void AveWinScore()
+    {
+        _winners.Clear();
+        foreach (SportingEvent sportingE in _attributes)
+        {
+            if (sportingE.GetOutcome() == SportingEvent.Outcome.Won)
+            {
+                _winners.Add(sportingE);
+            }
+        }
+
+        if (_winners.Count == 0)
+        {
+            Console.WriteLine("--There are no instances of a win.--");
+        }
+
+        else
+        {
+            double baseAve = 0.0;
+            double baskAve = 0.0;
+            double footAve = 0.0;
+            double golfAve = 0.0;
+            double hockAve = 0.0;
+            double soccAve = 0.0;
+            double wresAve = 0.0;
+            int baseCount = 0;
+            int baskCount = 0;
+            int footCount = 0;
+            int golfCount = 0;
+            int hockCount = 0;
+            int soccCount = 0;
+            int wresCount = 0;
+            foreach (SportingEvent winner in _winners)
+            {
+                if (winner.GetClass() == "Baseball")
+                {
+                    baseAve += winner.GetScore();
+                    baseCount ++;
+                }
+                else if (winner.GetClass() == "Basketball")
+                {
+                    baskAve += winner.GetScore();
+                    baskCount ++;
+                }
+                else if (winner.GetClass() == "Football")
+                {
+                    footAve += winner.GetScore();
+                    footCount ++;
+                }
+                else if (winner.GetClass() == "Golf")
+                {
+                    golfAve += winner.GetScore();
+                    golfCount ++;
+                }
+                else if (winner.GetClass() == "Hockey")
+                {
+                    hockAve += winner.GetScore();
+                    hockCount ++;
+                }
+                else if (winner.GetClass() == "Soccer")
+                {
+                    soccAve += winner.GetScore();
+                    soccCount ++;
+                }
+                else if (winner.GetClass() == "Wrestling")
+                {
+                    wresAve += winner.GetScore();
+                    wresCount ++;
+                }
+            }
+            Console.WriteLine("For All Winning Sporting Events");
+            Console.WriteLine($"Sport: Average Score");
+            Console.WriteLine("- - - - - - - - - - - - - - - -");
+            Console.WriteLine($"Baseball: {Math.Ceiling((double)baseAve/baseCount)}");
+            Console.WriteLine($"Basketball: {Math.Ceiling((double)baskAve/baskCount)}");
+            Console.WriteLine($"Football: {Math.Ceiling((double)footAve/footCount)}");
+            Console.WriteLine($"Golf: {Math.Ceiling((double)golfAve/golfCount)}");
+            Console.WriteLine($"Hockey: {Math.Ceiling((double)hockAve/hockCount)}");
+            Console.WriteLine($"Soccer: {Math.Ceiling((double)soccAve/soccCount)}");
+            Console.WriteLine($"Wrestling: {Math.Ceiling((double)wresAve/wresCount)}");
+        }
+    }
+
 }

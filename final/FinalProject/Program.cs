@@ -305,6 +305,8 @@ class Program
                 {
                     int totalEvents = attributesAll.TotalAttributes();
                     Console.WriteLine($"Total Recorded Sporting Events: {totalEvents}");
+                    Console.WriteLine();
+                    attributesAll.AveWinScore();
                 }
                 else
                 {

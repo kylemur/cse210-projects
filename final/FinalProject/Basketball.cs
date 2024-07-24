@@ -29,6 +29,11 @@ class Basketball : SportingEvent
         SetFreePercent();
     }
 
+    public override int GetScore()
+    {
+        return _points;
+    }
+
     private void SetPoints()
     {
         _points = _shotsMade*2 + _threeShotsMade*3 + _freeMade;

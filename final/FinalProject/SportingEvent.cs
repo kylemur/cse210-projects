@@ -26,13 +26,15 @@ abstract class SportingEvent
     {
         return _team;
     }
-    
-    public abstract void SetOutcome();
 
+    public abstract int GetScore();
+    
     public Outcome GetOutcome()
     {
         return _outcome;
     }
+    
+    public abstract void SetOutcome();
 
     public abstract void DisplayAttributes();
     public abstract void SaveAttributes();

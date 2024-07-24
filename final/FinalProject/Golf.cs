@@ -24,6 +24,11 @@ class Golf : SportingEvent
         // SetNames();
     }
 
+    public override int GetScore()
+    {
+        return _totalStrokes;
+    }
+
 
     public void SetPars(string pars) // copilot helped me to deserialize a list
     {
